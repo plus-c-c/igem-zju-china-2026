@@ -1,0 +1,106 @@
+@font-face {
+  font-family: "Doppio One";
+  src: url("../../public/fonts/DoppioOne-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Idiqlat";
+  src: url("../../public/fonts/Idiqlat-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Idiqlat2";
+  src: url("../../public/fonts/Idiqlat-Light.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+.navbar {
+  background-color: #2967a6;
+  min-height: 80px;
+  transition: transform 260ms ease;
+}
+
+.navbar-hidden {
+  transform: translateY(-100%);
+}
+
+.navbar-hidden .dropdown-menu {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.navbar-brand {
+  margin-left: 15px;
+}
+
+.brand-link {
+  align-items: center;
+  color: white;
+  display: flex;
+  font-family: "Idiqlat2", sans-serif;
+  font-size: 20px;
+  gap: 1px;
+  text-decoration: none;
+}
+
+.brand-link:hover,
+.brand-link:focus {
+  color: white;
+}
+
+.brand-logo {
+  height: 46px;
+  width: auto;
+}
+
+.navbar-nav {
+  font-family: "Doppio One", sans-serif;
+  font-size: 17px;
+  margin-left: auto;
+}
+
+.navbar .nav-link,
+.navbar .dropdown-toggle {
+  color: white;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus,
+.navbar .dropdown-toggle:hover,
+.navbar .dropdown-toggle:focus {
+  color: white;
+}
+
+.navbar .dropdown-menu {
+  --bs-dropdown-min-width: 0;
+  width: max-content;
+  animation: dropdown-slide 180ms ease-out;
+  background-color: #86c5ff;
+  font-family: "Doppio One", sans-serif;
+}
+
+.navbar .dropdown-item {
+  color: white;
+  font-family: "Doppio One", sans-serif;
+}
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus {
+  background-color: #faeebd;
+  color: #212529;
+}
+
+@keyframes dropdown-slide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

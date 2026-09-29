@@ -22,3 +22,13 @@ export { HumanPractices } from "./human-practices.tsx";
 export { Education } from "./education.tsx";
 export { Inclusivity } from "./inclusivity.tsx";
 export { Sustainability } from "./sustainability.tsx";
+
+// Additional navigation pages
+export { Design } from "./design.tsx";
+export { ProofOfConcept } from "./proof-of-concept.tsx";
+export { Implementation } from "./implementation.tsx";
+export { FuturePlan } from "./future-plan.tsx";
+export { Protocol } from "./protocol.tsx";
+export { Parts } from "./parts.tsx";
+export { Sponsors } from "./sponsors.tsx";
+export { Attributions } from "./attributions.tsx";

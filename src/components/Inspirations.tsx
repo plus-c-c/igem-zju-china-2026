@@ -1,4 +1,5 @@
 import { stringToSlug } from "../utils";
+import "./Inspirations.css";
 
 export interface InspirationLink {
   year: number;
@@ -13,7 +14,7 @@ interface InspirationsProps {
 export function Inspirations({ inspirationLinkList }: InspirationsProps) {
   return (
     <>
-      <div className="col-lg-4">
+      <div className="inspirations col-lg-4">
         <h2>Inspirations</h2>
         <hr />
         <ul>

@@ -1,17 +1,47 @@
+html,
+body,
+#root {
+  background-color: white !important;
+}
+
 body {
-  padding-top: 56px;
+  padding-top: 80px;
 }
 
-.left-aligned {
-  margin-left: auto;
+.app {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 80px);
 }
 
-.bg-dark {
-  background-color: #343a40 !important;
+.content {
+  background-color: white;
+  flex: 1;
 }
 
-.bg-hero {
-  background-color: #45b06cff;
+html.scrollbar,
+body.scrollbar {
+  --scrollbar-thumb-color: #006cd1;
+  --scrollbar-track-color: transparent;
+  scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+  scrollbar-width: thin;
+}
+
+html.scrollbar::-webkit-scrollbar,
+body.scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+html.scrollbar::-webkit-scrollbar-track,
+body.scrollbar::-webkit-scrollbar-track {
+  background-color: var(--scrollbar-track-color);
+}
+
+html.scrollbar::-webkit-scrollbar-thumb,
+body.scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-color);
+  border-radius: 8px;
 }
 
 /* CALLOUT */
@@ -50,16 +80,4 @@ body {
 
 .bd-callout-danger {
   border-left-color: #d9534f;
-}
-
-/* footer */
-footer a {
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-footer a:hover {
-  color: white;
-  text-decoration: underline;
 }
