@@ -1,6 +1,5 @@
 import { motion, useReducedMotion } from "motion/react";
 import { useStory } from "./StoryContext";
-const asset = `${import.meta.env.BASE_URL}images/home/`;
 export default function GlobalBurden({
   stage,
   progress,
