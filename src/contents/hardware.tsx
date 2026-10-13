@@ -2,9 +2,10 @@ import { Inspirations, InspirationLink } from "../components/Inspirations";
 
 export function Hardware() {
   const links: InspirationLink[] = [
-    { year: 2025, teamName: "TUDarmstadt", pageName: "hardware" },
-    { year: 2025, teamName: "Cornell", pageName: "hardware" },
-    { year: 2025, teamName: "SHSID", pageName: "hardware" },
+    { year: 2024, teamName: "Aachen", pageName: "hardware" },
+    { year: 2023, teamName: "Rochester", pageName: "hardware" },
+    { year: 2023, teamName: "HUST-China", pageName: "hardware" },
+    { year: 2023, teamName: "Kyoto", pageName: "hardware" },
   ];
 
   return (
@@ -14,18 +15,20 @@ export function Hardware() {
           <div className="bd-callout bd-callout-info">
             <h4>Best Hardware</h4>
             <p>
-              This award is for teams who develop hardware for synthetic
-              biology. Good iGEM hardware makes work with standard parts easier,
-              faster, better, or more accessible: think a sensor that helps
-              characterize parts, or a robot that automates experiments and
-              cloning. Strong contenders demonstrate utility, user testing, and
-              easy reproducibility.
+              This is a prize for the team that has developed a piece of
+              hardware for synthetic biology. Hardware in iGEM should make
+              synthetic biology based on standard parts easier, faster, better
+              or more accessible to our community. Did your team make a sensor
+              to help teams characterize parts? Did you make a robot that can
+              help teams perform experiments or do cloning more easily? Strong
+              competitors for this prize will demonstrate utility, user testing,
+              and easy reproducibility.
             </p>
             <hr />
             <p>
               Visit the{" "}
-              <a href="https://competition.igem.org/judging/awards/special">
-                Special Awards page
+              <a href="https://competition.igem.org/judging/special-prizes">
+                Special Prizes page
               </a>{" "}
               for more information.
             </p>

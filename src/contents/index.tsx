@@ -1,6 +1,7 @@
 export { Home } from "./home.tsx";
 // Team
 export { Members } from "./members.tsx";
+export { Attributions } from "./attributions.tsx";
 // Project
 export { Description } from "./description.tsx";
 export { Engineering } from "./engineering.tsx";
@@ -10,7 +11,7 @@ export { Contribution } from "./contribution.tsx";
 export { Experiments } from "./experiments.tsx";
 export { Notebook } from "./notebook.tsx";
 export { Measurement } from "./measurement.tsx";
-export { AlternativePlatform } from "./alternative-platform.tsx";
+export { Plant } from "./plant.tsx";
 export { SafetyAndSecurity } from "./safety-and-security.tsx";
 // Dry Lab
 export { Model } from "./model.tsx";
@@ -31,4 +32,3 @@ export { FuturePlan } from "./future-plan.tsx";
 export { Protocol } from "./protocol.tsx";
 export { Parts } from "./parts.tsx";
 export { Sponsors } from "./sponsors.tsx";
-export { Attributions } from "./attributions.tsx";

@@ -13,7 +13,7 @@ export function Engineering() {
             <hr />
             <p>
               Visit the{" "}
-              <a href="https://competition.igem.org/judging/awards/medals">
+              <a href="https://competition.igem.org/judging/medals">
                 Medals page
               </a>{" "}
               for more information.

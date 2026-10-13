@@ -1,0 +1,445 @@
+.home-container,
+.nest-home {
+  background: #f6faff;
+}
+.nest-home {
+  font-family: "Outfit", sans-serif;
+}
+.nest-home p {
+  margin: 0;
+}
+.home-scene {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  scroll-margin-top: 0;
+}
+.home-scene:focus {
+  outline: none;
+}
+.home-scene-canvas {
+  width: 1280px;
+  position: relative;
+  transform-origin: top left;
+}
+.home-water {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+}
+.home-scroll-cue {
+  position: absolute;
+  left: 615px;
+  top: 529px;
+  width: 49px;
+  height: 46px;
+}
+.nest-home button {
+  padding: 0;
+  border: 0;
+}
+.nest-home button:focus-visible,
+.home-scroll-cue:focus-visible {
+  outline: 4px solid #0341c8;
+  outline-offset: -6px;
+}
+.global-burden {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(90deg, #5287ba, #a3c4eb 70%, #eaf3ff);
+}
+.burden-heading {
+  position: absolute;
+  left: 70px;
+  top: 54px;
+  color: #f6faff;
+}
+.home-eyebrow {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2.52px;
+}
+.burden-heading h2 {
+  font-size: 43px;
+  line-height: 1;
+  font-weight: 600;
+  margin: 11px 0 0;
+}
+.burden-map-card {
+  position: absolute;
+  left: 515px;
+  top: 115px;
+  width: 737px;
+  height: 497px;
+  background: #ffe387;
+  opacity: 0.9;
+  border-radius: 30px;
+  box-shadow: 0 18px 38px #173b631f;
+}
+.burden-map {
+  position: absolute;
+  left: 499px;
+  top: 145px;
+  width: 738px;
+  height: 436px;
+}
+.world-map {
+  position: absolute;
+  left: 43px;
+  top: 40px;
+}
+.map-legend {
+  position: absolute;
+  left: 408px;
+  top: 383px;
+  width: 296px;
+  height: 62px;
+  color: #173b64;
+  font-size: 11px;
+}
+.map-legend strong {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 18px;
+}
+.map-legend img {
+  display: block;
+}
+.map-legend span:last-child {
+  float: right;
+}
+.burden-person {
+  position: absolute;
+  left: 94px;
+  top: 218.5px;
+  width: 405px;
+  height: 442px;
+  overflow: hidden;
+}
+.burden-person-frame {
+  position: absolute;
+  width: 100%;
+  height: 93.25%;
+  top: 0.9%;
+  left: -2.42%;
+  will-change: opacity;
+}
+.story-frame-image {
+  will-change: opacity;
+}
+.rehab-frame {
+  object-fit: fill;
+}
+.rehab-frame--1 {
+  width: 99.54%;
+  height: 80.49%;
+  left: 2.37%;
+  top: 16.29%;
+}
+.rehab-frame--2 {
+  width: 104.73%;
+  height: 79.07%;
+  left: -2.97%;
+  top: 14.99%;
+}
+.rehab-frame--3 {
+  width: 100%;
+  height: 94.69%;
+  left: 0;
+  top: 2.66%;
+}
+.burden-stat {
+  position: absolute;
+  left: 630px;
+  top: 275px;
+  width: 500px;
+  height: 168px;
+  text-align: center;
+}
+.burden-stat strong {
+  display: block;
+  margin: 15.5px 0 23px;
+  font-size: 82px;
+  font-weight: 600;
+  line-height: 0.95;
+  color: #0341c8;
+}
+.burden-stat p {
+  font-size: 17px;
+  line-height: 1.25;
+  color: #173b63d1;
+}
+.burden-source {
+  position: absolute;
+  left: 1002px;
+  top: 625px;
+  font-size: 11px;
+  color: #173b6394;
+}
+/* The Figma scenes are illustrations; scaling their shared coordinate space keeps pipes and the two knee halves continuous. */
+@media (prefers-reduced-motion: reduce) {
+  .nest-home {
+    scroll-behavior: auto;
+  }
+}
+.home-scroll-cue {
+  display: grid;
+  place-items: center;
+}
+/* Keep exported SVG root geometry, including the original filter padding. */
+.nest-home img[src$=".svg"] {
+  width: auto;
+  height: auto;
+}
+.home-story-mobile {
+  height: auto;
+}
+.home-story-mobile .home-scene-canvas {
+  width: 100%;
+  transform: none !important;
+}
+.home-story-mobile .home-scene-canvas > div {
+  min-height: 820px;
+}
+/* Native document scrolling drives the fixed story viewport. */
+html.home-story-open {
+  overflow-y: scroll;
+  scroll-behavior: auto;
+}
+body.home-story-open {
+  overflow: visible;
+}
+body.home-story-open .app {
+  min-height: 100dvh;
+}
+
+.story-viewport {
+  position: fixed;
+  z-index: 1;
+  inset: 0;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+.story-track {
+  transition: none;
+  will-change: transform;
+}
+.story-track[data-transition="instant"] {
+  transition: none;
+}
+.home-story-scrollbar {
+  position: absolute;
+  z-index: 10;
+  right: 0;
+  top: 0;
+  width: 16px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  appearance: none;
+  writing-mode: vertical-lr;
+  direction: ltr;
+  background: transparent;
+  cursor: pointer;
+  touch-action: none;
+}
+.home-story-scrollbar::-webkit-slider-runnable-track {
+  width: 6px;
+  height: 100%;
+  background: transparent;
+}
+.home-story-scrollbar::-webkit-slider-thumb {
+  appearance: none;
+  width: 6px;
+  height: 44px;
+  border-radius: 8px;
+  background: var(--scrollbar-thumb-color, #006cd1);
+}
+.home-story-scrollbar::-moz-range-track {
+  width: 6px;
+  height: 100%;
+  background: transparent;
+}
+.home-story-scrollbar::-moz-range-thumb {
+  width: 6px;
+  height: 44px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--scrollbar-thumb-color, #006cd1);
+}
+.home-story-scrollbar:focus-visible {
+  outline: 2px solid #006cd1;
+  outline-offset: -2px;
+}
+.story-viewport .home-scene {
+  height: var(--screen-height);
+  overflow: hidden;
+  background: #f6faff;
+}
+.story-viewport .home-scene-canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1280px;
+  height: 720px;
+  transform: translate(-50%, -50%) scale(var(--scene-scale));
+  transform-origin: center;
+}
+.home-pipeline-window {
+  height: 720px;
+  overflow: hidden;
+}
+.story-viewport #home-2 {
+  background: linear-gradient(90deg, #5287ba, #a3c4eb 70%, #eaf3ff);
+}
+.story-viewport #home-3 {
+  background: linear-gradient(90deg, #2e6199, #5287ba 62%, #85abd6);
+}
+.story-viewport #home-4 {
+  background: linear-gradient(90deg, #f6faff, #ebf2fc 58%, #b8d4f2);
+}
+.story-viewport #home-5 {
+  background: linear-gradient(#fffcf1, #ffde70);
+}
+/* Scroll stages: background first, then copy, then illustration. */
+.story-viewport #home-5 :is(.home-layer-52, .home-layer-53) {
+  opacity: var(--nest-title, 1);
+  translate: -50% calc((1 - var(--nest-title, 1)) * -42px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .story-viewport #home-5 {
+    --nest-title: 1 !important;
+  }
+}
+.story-viewport
+  #home-3
+  :is(
+    .home-layer-16,
+    .home-layer-17,
+    .home-layer-20,
+    .home-layer-21,
+    .home-layer-25
+  ),
+.story-viewport
+  #home-4
+  :is(
+    .home-layer-32,
+    .home-layer-33,
+    .home-layer-34,
+    .home-layer-35,
+    .home-layer-36,
+    .home-layer-37,
+    .home-layer-38,
+    .home-layer-39,
+    .home-layer-40,
+    .home-layer-41,
+    .home-layer-42,
+    .home-layer-43,
+    .home-layer-44
+  ) {
+  opacity: var(--intro-text, 1);
+}
+.story-viewport
+  #home-3
+  :is(
+    .home-layer-13,
+    .home-layer-14,
+    .home-layer-15,
+    .home-layer-23,
+    .home-layer-24
+  ),
+.story-viewport
+  #home-4
+  :is(
+    .home-layer-27,
+    .home-layer-28,
+    .home-layer-29,
+    .home-layer-30,
+    .home-layer-45
+  ) {
+  opacity: var(--intro-art, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .story-viewport #home-3,
+  .story-viewport #home-4 {
+    --intro-text: 1 !important;
+    --intro-art: 1 !important;
+  }
+}
+.story-viewport .home-hero-scene .home-scene-canvas {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  transform: none;
+}
+.story-viewport .home-footer-scene {
+  background: #f6faff;
+}
+.story-viewport .home-footer-scene .home-scene-canvas {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  transform: none;
+}
+.story-viewport .home-hero-scene header {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  display: block;
+  border-radius: 0;
+}
+.story-viewport .home-hero-scene [data-node-id="211:297"] {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: min(19.53vw, 35vh);
+  line-height: 1.08;
+}
+.story-viewport .home-hero-scene [data-node-id="211:302"] {
+  top: auto;
+  bottom: -4%;
+  left: -3%;
+  width: 36%;
+  height: 64%;
+}
+.story-viewport .home-hero-scene [data-node-id="211:302"] > div {
+  width: 100%;
+  height: 100%;
+}
+.story-viewport .home-hero-scene [data-node-id="211:302"] > div > div {
+  width: 100%;
+  height: 100%;
+}
+.story-viewport .home-hero-scene [data-node-id="211:302"] img {
+  object-fit: contain;
+}
+.story-viewport .home-hero-scene [data-node-id="225:89"] {
+  position: absolute;
+  left: 25%;
+  top: 76%;
+}
+.story-viewport .home-scroll-cue {
+  left: calc(50% - 24px);
+  top: auto;
+  bottom: 5%;
+  background: transparent;
+}
+.story-viewport .burden-stat strong {
+  font-variant-numeric: tabular-nums;
+}
+@media (prefers-reduced-motion: reduce) {
+  .story-track {
+    transition: none;
+  }
+}
+.story-viewport #home-2 .global-burden,
+.story-viewport #home-3 [data-node-id="186:310"],
+.story-viewport #home-4 [data-node-id="186:312"],
+.story-viewport #home-5 [data-node-id="186:313"] {
+  background: transparent;
+}
