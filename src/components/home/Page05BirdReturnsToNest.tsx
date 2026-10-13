@@ -1,4 +1,3 @@
-const assetPathPrefix = `${import.meta.env.BASE_URL}images/home`;
 import { motion, useReducedMotion } from "motion/react";
 import { useStory } from "./StoryContext";
 const imgFlightPathDashedOrbit = `https://static.igem.wiki/teams/6102/wiki/images/home/c381f.avif`;

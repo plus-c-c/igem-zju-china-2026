@@ -1,4 +1,3 @@
-const assetPathPrefix = `${import.meta.env.BASE_URL}images/home`;
 import { WaterSurface } from "./WaterSurface";
 
 const imgImageNestBlueBirdMascot = `https://static.igem.wiki/teams/6102/wiki/images/home/58a94.avif`;

@@ -51,7 +51,7 @@ function Scene({
       aria-label={name}
       style={style}
       aria-hidden={!active}
-      {...(!active ? { inert: "" } : {})}
+      inert={!active}
     >
       <StoryContext.Provider
         value={{

@@ -1,6 +1,5 @@
 import { useReducedMotion } from "motion/react";
 
-const assetPathPrefix = `${import.meta.env.BASE_URL}images/home`;
 const imgSportsTraumaFrame1 = `https://static.igem.wiki/teams/6102/wiki/images/home/person-2-frame-1.avif`;
 const imgSportsTraumaFrame2 = `https://static.igem.wiki/teams/6102/wiki/images/home/person-2-frame-2.avif`;
 const imgPage03PowderDisc = `https://static.igem.wiki/teams/6102/wiki/images/home/3249a.svg`;
