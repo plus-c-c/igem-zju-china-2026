@@ -1,17 +1,30 @@
 .footer {
-  min-height: 278px;
+  --footer-arch-height: clamp(64px, 7vw, 104px);
+  position: relative;
+  isolation: isolate;
+  min-height: 368px;
   margin-top: clamp(80px, 8vw, 128px);
-  padding: 32px 40px;
+  padding: calc(32px + var(--footer-arch-height)) 40px 32px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 40px;
-  background: #1F66B2;
+  background: transparent;
   color: #fff;
   font-family: "Outfit", sans-serif;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 300;
   line-height: 1.1;
   letter-spacing: -0.045em;
+}
+
+.footer::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: 50% 50% 0 0 / var(--footer-arch-height)
+    var(--footer-arch-height) 0 0;
+  background: #1f66b2;
+  content: "";
 }
 
 .footer p {
@@ -21,13 +34,12 @@
 .footer__left {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
-.footer__brand {
-  color: #173b64;
-  font-size: 20px;
-  letter-spacing: 0.1em;
+.footer__tagline {
+  font-family: "Mansalva", cursive;
+  font-weight: 200;
+  font-size: 22px;
 }
 
 .footer__legal {
@@ -37,9 +49,50 @@
   color: #dce8f6;
 }
 
+.footer__sponsors {
+  position: relative;
+  width: min(100%, 520px);
+  height: 104px;
+  margin-top: 14px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.footer__sponsor-logo {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+  animation: footer-sponsor-carousel 8s ease-in-out infinite;
+}
+
+.footer__sponsor-logo:nth-child(2) {
+  animation-delay: -4s;
+}
+
+@keyframes footer-sponsor-carousel {
+  0%,
+  45% {
+    opacity: 1;
+  }
+
+  50%,
+  95% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .footer a {
   color: #fff;
-  font-weight: 700;
+  font-weight: 500;
   text-decoration: none;
 }
 
@@ -55,19 +108,26 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  min-height: 278px;
+  min-height: 378px;
   margin-top: 0;
 }
 
 @media (max-width: 700px) {
   .footer {
+    --footer-arch-height: 48px;
     min-height: 320px;
-    padding: 28px 24px;
+    padding: calc(28px + var(--footer-arch-height)) 24px 28px;
     grid-template-columns: 1fr;
     gap: 52px;
   }
+}
 
-  .footer__left {
-    gap: 54px;
+@media (prefers-reduced-motion: reduce) {
+  .footer__sponsor-logo {
+    animation: none;
+  }
+
+  .footer__sponsor-logo:nth-child(2) {
+    display: none;
   }
 }

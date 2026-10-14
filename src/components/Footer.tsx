@@ -5,13 +5,10 @@ export function Footer({ story = false }: { story?: boolean }) {
     <footer
       className={`footer${story ? " footer--story" : ""}`}
       data-node-id="192:311"
-      data-name="Footer / NEST / Desktop"
+      data-name="Footer / Desktop"
     >
       <div className="footer__left" data-node-id="192:312">
-        <span className="footer__brand" aria-label="NEST">
-          NEST
-        </span>
-        <p data-node-id="192:315">
+        <p className="footer__tagline" data-node-id="192:315">
           An engineered hydrogel platform for healthier joints and a better
           tomorrow.
         </p>
@@ -32,6 +29,18 @@ export function Footer({ story = false }: { story?: boolean }) {
           </a>
           .
         </p>
+        <div className="footer__sponsors" aria-label="Project sponsors">
+          <img
+            className="footer__sponsor-logo"
+            src="https://static.igem.wiki/teams/6102/wiki/images/footer/001.avif"
+            alt="College of Life Sciences, Zhejiang University"
+          />
+          <img
+            className="footer__sponsor-logo"
+            src="https://static.igem.wiki/teams/6102/wiki/images/footer/002.avif"
+            alt="Zhejiang University"
+          />
+        </div>
       </div>
     </footer>
   );
