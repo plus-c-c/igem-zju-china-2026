@@ -4,7 +4,7 @@ const staticHome = "https://static.igem.wiki/teams/6102/wiki/images/home";
 const imgFlyingBirdFrame1 = `${staticHome}/home-08-bird-flight-01.avif`;
 const imgFlyingBirdFrame2 = `${staticHome}/home-08-bird-flight-02.avif`;
 const imgBoneNest = `${staticHome}/home-08-bone.avif`;
-const imgBirdRestingOnBone = `${staticHome}/home-08-bird-landed.avif`;
+const imgBirdRestingOnBone = `${staticHome}/home-08-bird-landed-2.avif`;
 const imgAccentBlushGlow = `https://static.igem.wiki/teams/6102/wiki/images/home/c207d.svg`;
 const imgAccentYellowOrbit = `https://static.igem.wiki/teams/6102/wiki/images/home/55f95.svg`;
 
@@ -107,7 +107,7 @@ export default function Page05BirdReturnsToNest() {
           className="home-resting-bird-image"
           src={imgBirdRestingOnBone}
           onError={(event) => {
-            const fallback = `https://static.igem.wiki/teams/6102/wiki/images/home/home-08-bird-landed.avif`;
+            const fallback = `https://static.igem.wiki/teams/6102/wiki/images/home/home-08-bird-landed-2.avif`;
             if (
               event.currentTarget.src !==
               new URL(fallback, window.location.href).href
