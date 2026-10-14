@@ -4,7 +4,7 @@ const staticHome = "https://static.igem.wiki/teams/6102/wiki/images/home";
 const imgFlyingBirdFrame1 = `${staticHome}/home-08-bird-flight-01.avif`;
 const imgFlyingBirdFrame2 = `${staticHome}/home-08-bird-flight-02.avif`;
 const imgBoneNest = `${staticHome}/home-08-bone.avif`;
-const imgBirdRestingOnBone = `${staticHome}/home-08-bird-landed.png`;
+const imgBirdRestingOnBone = `${staticHome}/home-08-bird-landed.avif`;
 const imgAccentBlushGlow = `https://static.igem.wiki/teams/6102/wiki/images/home/c207d.svg`;
 const imgAccentYellowOrbit = `https://static.igem.wiki/teams/6102/wiki/images/home/55f95.svg`;
 
@@ -97,7 +97,7 @@ export default function Page05BirdReturnsToNest() {
         data-name="Bird resting on bone"
         style={{
           opacity: birdStage >= 2 ? Math.min(1, landing * 5) : 0,
-          transform: `translateY(${24 * (1 - landingEase)}px) scale(${0.82 + 0.18 * landingEase})`,
+          transform: `translateY(${24 * (1 - landingEase)}px) scale(${0.94 + 0.22 * landingEase})`,
         }}
       >
         <img

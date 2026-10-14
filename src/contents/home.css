@@ -22,26 +22,11 @@
   position: relative;
   transform-origin: top left;
 }
-.home-water {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.5;
-}
-.home-scroll-cue {
-  position: absolute;
-  left: 615px;
-  top: 529px;
-  width: 49px;
-  height: 46px;
-}
 .nest-home button {
   padding: 0;
   border: 0;
 }
-.nest-home button:focus-visible,
-.home-scroll-cue:focus-visible {
+.nest-home button:focus-visible {
   outline: 4px solid #0341c8;
   outline-offset: -6px;
 }
@@ -183,26 +168,6 @@
   .nest-home {
     scroll-behavior: auto;
   }
-  .home-scroll-cue img {
-    animation: none;
-  }
-}
-.home-scroll-cue {
-  display: grid;
-  place-items: center;
-}
-.home-scroll-cue img {
-  animation: home-scroll-cue-float 1.7s ease-in-out infinite;
-  will-change: transform;
-}
-@keyframes home-scroll-cue-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(8px);
-  }
 }
 /* Keep exported SVG root geometry, including the original filter padding. */
 .nest-home img[src$=".svg"] {
@@ -293,23 +258,11 @@ body.home-story-open .app {
   overflow: hidden;
   background: #f6faff;
 }
-.story-viewport :is(#home-9, #home-10, #home-11) {
+.story-viewport #home-8 {
   overflow: visible;
+  background: #f4f9ff;
 }
-.story-viewport #home-9 {
-  z-index: 4;
-}
-.story-viewport #home-10 {
-  z-index: 3;
-}
-.story-viewport #home-11 {
-  z-index: 2;
-}
-.story-viewport #home-12 {
-  z-index: 1;
-}
-.story-viewport
-  :is(#home-5, #home-6, #home-7, #home-9, #home-10, #home-11, #home-12) {
+.story-viewport :is(#home-5, #home-6) {
   background: #f4f9ff;
 }
 .story-viewport .home-scene-canvas {
@@ -320,9 +273,6 @@ body.home-story-open .app {
   height: 720px;
   transform: translate(-50%, -50%) scale(var(--scene-scale));
   transform-origin: center;
-}
-.story-viewport #home-7 {
-  background: transparent;
 }
 .home-pipeline-window {
   height: 720px;
@@ -337,16 +287,16 @@ body.home-story-open .app {
 .story-viewport #home-4 {
   background: linear-gradient(90deg, #f6faff, #ebf2fc 58%, #b8d4f2);
 }
-.story-viewport #home-8 {
+.story-viewport #home-7 {
   background: linear-gradient(180deg, #f4f9ff 0%, #fffcf1 15%, #ffde70 100%);
 }
 /* Scroll stages: background first, then copy, then illustration. */
-.story-viewport #home-8 :is(.home-layer-52, .home-layer-53) {
+.story-viewport #home-7 :is(.home-layer-52, .home-layer-53) {
   opacity: var(--nest-title, 1);
   translate: -50% calc((1 - var(--nest-title, 1)) * -42px);
 }
 @media (prefers-reduced-motion: reduce) {
-  .story-viewport #home-8 {
+  .story-viewport #home-7 {
     --nest-title: 1 !important;
   }
 }
@@ -405,15 +355,15 @@ body.home-story-open .app {
     --intro-art: 1 !important;
   }
 }
-.story-viewport .home-hero-scene .home-scene-canvas {
+.story-viewport .home-footer-scene {
+  background: #f6faff;
+}
+.story-viewport #home-1 .home-scene-canvas {
   width: 100%;
   height: 100%;
   left: 0;
   top: 0;
   transform: none;
-}
-.story-viewport .home-footer-scene {
-  background: #f6faff;
 }
 .story-viewport .home-footer-scene .home-scene-canvas {
   width: 100%;
@@ -421,50 +371,6 @@ body.home-story-open .app {
   left: 0;
   top: 0;
   transform: none;
-}
-.story-viewport .home-hero-scene header {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  display: block;
-  border-radius: 0;
-}
-.story-viewport .home-hero-scene [data-node-id="211:297"] {
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: min(19.53vw, 35vh);
-  line-height: 1.08;
-}
-.story-viewport .home-hero-scene [data-node-id="211:302"] {
-  top: auto;
-  bottom: -4%;
-  left: -3%;
-  width: 36%;
-  height: 64%;
-}
-.story-viewport .home-hero-scene [data-node-id="211:302"] > div {
-  width: 100%;
-  height: 100%;
-}
-.story-viewport .home-hero-scene [data-node-id="211:302"] > div > div {
-  width: 100%;
-  height: 100%;
-}
-.story-viewport .home-hero-scene [data-node-id="211:302"] img {
-  object-fit: contain;
-}
-.story-viewport .home-hero-scene [data-node-id="225:89"] {
-  position: absolute;
-  left: 25%;
-  top: 76%;
-}
-.story-viewport .home-scroll-cue {
-  left: calc(50% - 24px);
-  top: auto;
-  bottom: 5%;
-  background: transparent;
 }
 .story-viewport .burden-stat strong {
   font-variant-numeric: tabular-nums;
@@ -477,6 +383,6 @@ body.home-story-open .app {
 .story-viewport #home-2 .global-burden,
 .story-viewport #home-3 [data-node-id="186:310"],
 .story-viewport #home-4 [data-node-id="186:312"],
-.story-viewport #home-8 [data-node-id="186:313"] {
+.story-viewport #home-7 [data-node-id="186:313"] {
   background: transparent;
 }

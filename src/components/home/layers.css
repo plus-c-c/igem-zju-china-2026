@@ -1,75 +1,4 @@
 /* Figma illustration layers: coordinates are local to each responsive scene. */
-.home-layer-1 {
-  align-content: stretch;
-  display: flex;
-  flex-direction: column;
-  gap: 100px;
-  align-items: center;
-  overflow: hidden;
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-top: 100px;
-  padding-bottom: 100px;
-  position: relative;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-  width: 100%;
-  height: 100%;
-}
-.home-layer-2 {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-}
-.home-layer-3 {
-  position: absolute;
-  inset: 0;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 222, 112, 0.57),
-    rgba(252, 192, 6, 0.57)
-  );
-}
-.home-layer-4 {
-  position: absolute;
-  opacity: 0.5;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-}
-.home-layer-5 {
-  overflow-wrap: break-word;
-  font-family: "Rubik Maps", sans-serif;
-  line-height: 267.648px;
-  font-style: normal;
-  position: relative;
-  flex-shrink: 0;
-  color: #0341c8;
-  font-size: 250px;
-  white-space: nowrap;
-}
-.home-layer-6 {
-  position: absolute;
-  display: flex;
-  height: 391.224px;
-  align-items: center;
-  justify-content: center;
-  left: -42px;
-  top: calc(40% + 11.4px);
-  width: 456px;
-}
-.home-layer-7 {
-  flex: none;
-  rotate: 0.86deg;
-}
-.home-layer-8 {
-  height: 384.521px;
-  position: relative;
-  width: 450.29px;
-}
 .home-layer-9 {
   position: absolute;
   inset: 0;
@@ -78,12 +7,6 @@
   pointer-events: none;
   width: 100%;
   height: 100%;
-}
-.home-layer-10 {
-  height: 242.435px;
-  position: relative;
-  flex-shrink: 0;
-  width: 643.659px;
 }
 .home-layer-11 {
   position: absolute;
@@ -547,7 +470,7 @@
   position: absolute;
   height: 213px;
   left: 530px;
-  top: 260px;
+  top: 275px;
   transform-origin: center bottom;
   width: 220px;
 }

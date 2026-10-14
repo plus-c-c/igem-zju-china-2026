@@ -35,6 +35,24 @@
 }
 .material-scene--pipeline {
   overflow: visible;
+  background: transparent;
+}
+
+.material-pipeline-story {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1280px;
+  height: 2880px;
+  background: #f4f9ff;
+  will-change: transform;
+}
+
+.material-pipeline-segment {
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  overflow: visible;
 }
 
 .material-art {
@@ -197,7 +215,7 @@
 
 .material-cards h2 {
   position: absolute;
-  top: 23px;
+  top: 58px;
   left: 463px;
   width: 440px;
   margin: 0;
@@ -207,22 +225,20 @@
   font-weight: 900;
   line-height: 38px;
   text-align: center;
-  opacity: var(--cards-exit-opacity, 1);
-  transform: translateY(var(--cards-exit-y, 0px));
+  opacity: var(--limitations-opacity, 1);
+  transform: translateY(var(--limitations-title-y, 0px));
   will-change: opacity, transform;
 }
 .material-card-row {
   position: absolute;
   left: 76px;
-  top: 105px;
+  top: 140px;
   display: grid;
   grid-template-columns: repeat(3, 367px);
   column-gap: 63px;
 }
 .material-cards .material-card-row {
-  opacity: var(--cards-exit-opacity, 1);
-  transform: translateY(var(--cards-exit-y, 0px));
-  will-change: opacity, transform;
+  will-change: transform;
 }
 .material-card {
   position: relative;
@@ -232,17 +248,44 @@
   transform-origin: center;
   transition: transform 180ms cubic-bezier(0.22, 0.75, 0.25, 1);
 }
-.material-card-bg {
-  inset: 0;
-  width: 367px;
-  height: 561px;
+.material-shadow-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: calc(100% - 15px);
+  height: calc(100% - 12px);
+  border-radius: 35px;
+}
+.material-shadow-card--light {
+  z-index: 0;
+  background: #a3c4eb;
+  transform: translate(15px, 12px);
+}
+.material-shadow-card--blue {
+  z-index: 1;
+  background: #0341c8;
+  transform: translate(7.5px, calc(6px + var(--cards-blue-y, 0px)));
+  will-change: transform;
+}
+.material-result-content {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  display: block;
+  width: calc(100% - 15px);
+  height: calc(100% - 12px);
+  opacity: var(--results-opacity, 0);
+  transform: translate(15px, calc(12px + var(--results-entry-y, 34px)));
+  will-change: opacity, transform;
 }
 .material-card-flip {
   position: absolute;
   inset: 0;
   display: block;
-  width: 100%;
-  height: 100%;
+  width: calc(100% - 15px);
+  height: calc(100% - 12px);
   padding: 0;
   border: 0;
   appearance: none;
@@ -250,6 +293,9 @@
   color: inherit;
   cursor: pointer;
   perspective: 1200px;
+  z-index: 3;
+  translate: 0 var(--cards-yellow-y, 0px);
+  will-change: translate, transform;
 }
 .material-card-flip:focus-visible {
   border-radius: 32px;
@@ -275,32 +321,11 @@
     z-index: 2;
     transform: scale(1.055);
   }
-
-  .material-card:hover .material-card-flip {
-    animation: material-card-hover-shake 420ms ease-in-out 160ms 1 both;
-  }
-}
-
-@keyframes material-card-hover-shake {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
-  22% {
-    transform: translate3d(-5px, 0, 0) rotate(-0.8deg);
-  }
-  44% {
-    transform: translate3d(5px, 0, 0) rotate(0.8deg);
-  }
-  66% {
-    transform: translate3d(-3px, 0, 0) rotate(-0.45deg);
-  }
-  84% {
-    transform: translate3d(2px, 0, 0) rotate(0.25deg);
-  }
 }
 .material-card-face {
   backface-visibility: hidden;
+  border-radius: 35px;
+  background: #ffeba1;
   transform-style: preserve-3d;
 }
 .material-card-face--back {
@@ -340,15 +365,6 @@
   height: 256px;
 }
 
-.material-results {
-  background: transparent;
-}
-.material-results .material-card-row {
-  top: 110px;
-  opacity: var(--cards-entry-opacity, 1);
-  transform: translateY(var(--cards-entry-y, 0px));
-  will-change: opacity, transform;
-}
 .material-result-cell {
   left: 100px;
   top: 258px;
@@ -393,10 +409,10 @@
   text-align: center;
 }
 .material-results-created {
-  top: 688px;
+  top: 58px;
   font-size: 28px;
-  opacity: var(--cards-entry-opacity, 1);
-  transform: translateY(var(--cards-entry-y, 0px));
+  opacity: var(--results-text-opacity, 0);
+  transform: translateY(var(--results-text-y, 24px));
   will-change: opacity, transform;
 }
 
@@ -438,7 +454,7 @@
 }
 .material-explanation-syringe {
   left: 823px;
-  top: -124px;
+  top: 0;
   width: 366px;
   height: 549px;
   transform: translateY(var(--hydrogel-injection-offset, 0px));
@@ -446,7 +462,7 @@
 }
 .material-explanation-bone {
   left: 844px;
-  top: 167px;
+  top: 291px;
   width: 322px;
   height: 484px;
   animation: none !important;
@@ -461,10 +477,6 @@
 
   .material-card:hover {
     transform: none;
-  }
-
-  .material-card:hover .material-card-flip {
-    animation: none;
   }
 
   .material-card-flip-inner {

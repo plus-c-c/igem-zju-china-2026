@@ -9,7 +9,6 @@ import { Footer } from "../../components/Footer";
 import { Toc } from "../../components/toc";
 import { BackToTop } from "../../components/BackToTop";
 import { LoadingScreen } from "../../components/LoadingScreen";
-import { HomeIntro } from "../../components/HomeIntro";
 
 const MINIMUM_LOADING_TIME = 600;
 const MAXIMUM_LOADING_TIME = 8000;
@@ -17,7 +16,7 @@ const MAXIMUM_LOADING_TIME = 8000;
 const App = () => {
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
-  const [homeIntroDismissed, setHomeIntroDismissed] = useState(false);
+  const [homeIntroReady, setHomeIntroReady] = useState(false);
   const pathMapping = getPathMapping();
   const currentPath =
     location.pathname
@@ -29,10 +28,18 @@ const App = () => {
     currentPath in pathMapping ? pathMapping[currentPath] : undefined;
   const isNotFound = !currentPage;
   const isHome = currentPath === "/";
-  const showHomeIntro = isHome && !isLoading && !homeIntroDismissed;
   const navigationTitle = currentPage
     ? currentPage.navigationTitle
     : "Not Found";
+
+  useEffect(() => {
+    const handleHomeIntroReady = () => setHomeIntroReady(true);
+    window.addEventListener("home-intro-ready", handleHomeIntroReady);
+
+    return () => {
+      window.removeEventListener("home-intro-ready", handleHomeIntroReady);
+    };
+  }, []);
 
   useEffect(() => {
     document.title = `${navigationTitle || ""} | ${import.meta.env.VITE_TEAM_NAME} - iGEM ${import.meta.env.VITE_TEAM_YEAR}`;
@@ -48,21 +55,13 @@ const App = () => {
     };
   }, []);
 
-  useEffect(() => {
-    document.documentElement.classList.toggle("home-intro-open", showHomeIntro);
-    document.body.classList.toggle("home-intro-open", showHomeIntro);
-
-    return () => {
-      document.documentElement.classList.remove("home-intro-open");
-      document.body.classList.remove("home-intro-open");
-    };
-  }, [showHomeIntro]);
-
   useLayoutEffect(() => {
     let cancelled = false;
     const startedAt = performance.now();
     setIsLoading(true);
-    if (currentPath === "/") setHomeIntroDismissed(false);
+    if (currentPath === "/") {
+      setHomeIntroReady(false);
+    }
 
     const waitForPageAssets = async () => {
       await new Promise<void>((resolve) =>
@@ -108,12 +107,8 @@ const App = () => {
     <div className="app">
       <LoadingScreen visible={isLoading} />
 
-      {showHomeIntro && (
-        <HomeIntro onEnter={() => setHomeIntroDismissed(true)} />
-      )}
-
       {/* Navigation */}
-      {!showHomeIntro && <Navbar />}
+      {(!isHome || homeIntroReady) && <Navbar introEntrance={isHome} />}
 
       {/* Header and PageContent */}
       <main
@@ -134,7 +129,7 @@ const App = () => {
                 element={
                   path === "/" ? (
                     <div className="home-container">
-                      <Component />
+                      {!isLoading && <Component />}
                     </div>
                   ) : (
                     <Toc key={path} title={title || ""}>
@@ -149,7 +144,7 @@ const App = () => {
         </Routes>
       </main>
 
-      {!isNotFound && !showHomeIntro && <BackToTop />}
+      {!isNotFound && <BackToTop />}
 
       {/* Footer */}
       {/* MUST mention license AND have a link to team wiki's repository on gitlab.igem.org */}

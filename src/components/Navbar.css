@@ -17,6 +17,23 @@
   transform: translateY(calc(-100% - 1px));
 }
 
+.nest-navbar-intro-enter {
+  animation: nest-navbar-intro-enter 1250ms cubic-bezier(0.22, 1, 0.36, 1)
+    2150ms backwards;
+}
+
+@keyframes nest-navbar-intro-enter {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-100% - 1px));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .navbar-reveal-zone {
   position: fixed;
   top: 0;
@@ -38,15 +55,30 @@
 }
 
 .nest-navbar .brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
   color: #0341c8;
-  font-family: "Rubik Maps", sans-serif;
-  font-size: 25px;
+  font-family: "Idiqlat", sans-serif;
+  font-size: 29px;
   font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 2px;
+  line-height: 1;
+  letter-spacing: 0;
   padding: 0;
   margin: 0;
   text-decoration: none;
+}
+
+.nest-navbar .brand-team-logo {
+  display: block;
+  width: 98px;
+  height: 41px;
+  object-fit: contain;
+}
+
+.nest-navbar .brand-team-name {
+  display: block;
+  white-space: nowrap;
 }
 
 .nest-navbar .brand-link:hover,
@@ -167,10 +199,24 @@
   .nest-navbar .dropdown-menu {
     width: 100%;
   }
+
+  .nest-navbar .brand-link {
+    gap: 10px;
+    font-size: 25px;
+  }
+
+  .nest-navbar .brand-team-logo {
+    width: 86px;
+    height: 36px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .nest-navbar {
     transition: none;
+  }
+
+  .nest-navbar-intro-enter {
+    animation: none;
   }
 }

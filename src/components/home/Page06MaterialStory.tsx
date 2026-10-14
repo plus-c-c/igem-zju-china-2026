@@ -110,6 +110,28 @@ export function LiposomeLoading() {
   );
 }
 
+export function MaterialPipelineStory({ progress }: { progress: number }) {
+  return (
+    <div
+      className="material-pipeline-story"
+      style={{ transform: `translateY(${-720 * progress}px)` }}
+    >
+      <div className="material-pipeline-segment">
+        <MaterialsAndSelp />
+      </div>
+      <div className="material-pipeline-segment">
+        <MagneticAlignment />
+      </div>
+      <div className="material-pipeline-segment">
+        <HydrogelFormation />
+      </div>
+      <div className="material-pipeline-segment">
+        <LiposomeLoading />
+      </div>
+    </div>
+  );
+}
+
 const limitationCards = [
   {
     title: (
@@ -150,10 +172,33 @@ const limitationCards = [
 
 export function MaterialLimitations() {
   const [flipped, setFlipped] = useState([false, false, false]);
-  const backgrounds = [
-    "home-06-card-bg-01.avif",
-    "home-06-card-bg-02.avif",
-    "home-06-card-bg-03.avif",
+  const resultArt = [
+    [
+      {
+        name: "home-07-card-art-01.avif",
+        className: "material-result-cell",
+      },
+    ],
+    [
+      {
+        name: "home-07-card-art-02.avif",
+        className: "material-result-chain",
+      },
+    ],
+    [
+      {
+        name: "home-07-card-art-03a.avif",
+        className: "material-result-magnetic",
+      },
+      {
+        name: "home-07-card-art-03b.avif",
+        className: "material-result-gag",
+      },
+      {
+        name: "home-07-card-art-03c.avif",
+        className: "material-result-liposome",
+      },
+    ],
   ];
 
   const toggleCard = (index: number) => {
@@ -164,13 +209,26 @@ export function MaterialLimitations() {
 
   return (
     <div
-      className="material-scene material-scene--770 material-cards"
+      className="material-scene material-scene--840 material-cards"
       data-node-id="725:13"
     >
       <h2>limitations of the materials</h2>
       <div className="material-card-row">
         {limitationCards.map((card, index) => (
           <article className="material-card" key={card.art}>
+            <span
+              className="material-shadow-card material-shadow-card--light"
+              aria-hidden="true"
+            />
+            <span
+              className="material-shadow-card material-shadow-card--blue"
+              aria-hidden="true"
+            />
+            <span className="material-result-content" aria-hidden="true">
+              {resultArt[index].map((art) => (
+                <Art key={art.name} name={art.name} className={art.className} />
+              ))}
+            </span>
             <button
               aria-label={`Flip card ${index + 1}`}
               aria-pressed={flipped[index]}
@@ -181,61 +239,17 @@ export function MaterialLimitations() {
             >
               <span className="material-card-flip-inner">
                 <span className="material-card-face material-card-face--front">
-                  <Art name={backgrounds[index]} className="material-card-bg" />
                   <span className="material-card-title">{card.title}</span>
                   <Art
                     name={card.art}
                     className={`material-limit-art ${card.className}`}
                   />
                 </span>
-                <span className="material-card-face material-card-face--back">
-                  <Art name={backgrounds[index]} className="material-card-bg" />
-                </span>
+                <span className="material-card-face material-card-face--back" />
               </span>
             </button>
           </article>
         ))}
-      </div>
-    </div>
-  );
-}
-
-export function MaterialResultCards() {
-  return (
-    <div
-      className="material-scene material-scene--840 material-results"
-      data-node-id="725:15"
-    >
-      <div className="material-card-row">
-        <article className="material-card">
-          <Art name="home-06-card-bg-01.avif" className="material-card-bg" />
-          <Art
-            name="home-07-card-art-01.avif"
-            className="material-result-cell"
-          />
-        </article>
-        <article className="material-card">
-          <Art name="home-06-card-bg-02.avif" className="material-card-bg" />
-          <Art
-            name="home-07-card-art-02.avif"
-            className="material-result-chain"
-          />
-        </article>
-        <article className="material-card">
-          <Art name="home-06-card-bg-03.avif" className="material-card-bg" />
-          <Art
-            name="home-07-card-art-03a.avif"
-            className="material-result-magnetic"
-          />
-          <Art
-            name="home-07-card-art-03b.avif"
-            className="material-result-gag"
-          />
-          <Art
-            name="home-07-card-art-03c.avif"
-            className="material-result-liposome"
-          />
-        </article>
       </div>
       <p className="material-results-created">so,we created......</p>
     </div>

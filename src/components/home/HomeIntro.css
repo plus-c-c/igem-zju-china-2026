@@ -1,0 +1,196 @@
+.home-intro {
+  --intro-brand-y: -44px;
+  --intro-tagline-y: 40px;
+  --intro-next-y: 48px;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #ebf1fa;
+  cursor: default;
+}
+
+.home-intro__video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+.home-intro__landing {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 88px 4vw 4vh;
+  pointer-events: none;
+}
+
+.home-intro--ready .home-intro__landing {
+  pointer-events: auto;
+}
+
+.home-intro__brand {
+  position: relative;
+  width: min(855px, 86vw);
+  height: clamp(82px, 8.85vw, 170px);
+  opacity: 0;
+  transform: translateY(calc(var(--intro-brand-y) + 24px)) scale(0.96);
+}
+
+.home-intro__nest {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1f52;
+  font-family: "Silkscreen", monospace;
+  font-size: clamp(96px, 13.02vw, 250px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: clamp(-7px, -0.365vw, -3px);
+  white-space: nowrap;
+}
+
+.home-intro__nest--cyan {
+  color: rgb(20 212 235 / 94%);
+  transform: translateX(clamp(-17px, -0.885vw, -7px));
+}
+
+.home-intro__nest--yellow {
+  color: rgb(255 204 46 / 92%);
+  transform: translateX(clamp(7px, 0.625vw, 12px));
+}
+
+.home-intro__tagline {
+  --intro-copy-y: var(--intro-tagline-y);
+  width: min(1548px, 88vw);
+  margin: clamp(14px, 1.8vh, 28px) 0 0;
+  color: #000;
+  font-family: "Silkscreen", monospace;
+  font-size: clamp(15px, 2.083vw, 40px);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: clamp(-7px, -0.365vw, -1.5px);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(calc(var(--intro-tagline-y) + 22px));
+}
+
+.home-intro__next {
+  --intro-copy-y: var(--intro-next-y);
+  display: grid;
+  place-items: center;
+  width: clamp(210px, 16.875vw, 324px);
+  height: clamp(56px, 3.646vw, 70px);
+  margin-top: clamp(28px, 4vh, 54px);
+  padding: 0;
+  border: 0;
+  border-radius: 22px;
+  background: #ffd452;
+  box-shadow: 0 8px 18px rgb(15 33 69 / 18%);
+  color: #141729;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(calc(var(--intro-next-y) + 22px));
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.home-intro--ready .home-intro__brand {
+  opacity: 1;
+  transform: translateY(var(--intro-brand-y)) scale(1);
+  animation: home-intro-brand-in 1150ms cubic-bezier(0.22, 1, 0.36, 1) 120ms
+    backwards;
+}
+
+.home-intro--ready .home-intro__tagline {
+  opacity: 1;
+  transform: translateY(var(--intro-tagline-y));
+  animation: home-intro-copy-in 1050ms cubic-bezier(0.22, 1, 0.36, 1) 1150ms
+    backwards;
+}
+
+.home-intro--ready .home-intro__next {
+  opacity: 1;
+  transform: translateY(var(--intro-next-y));
+  animation: home-intro-copy-in 1050ms cubic-bezier(0.22, 1, 0.36, 1) 1350ms
+    backwards;
+}
+
+.home-intro__next span {
+  font-family: "Inter", "Outfit", sans-serif;
+  font-size: clamp(26px, 1.875vw, 36px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.home-intro__next:hover {
+  transform: translateY(calc(var(--intro-next-y) - 3px)) scale(1.025);
+  box-shadow: 0 12px 24px rgb(15 33 69 / 24%);
+}
+
+@keyframes home-intro-brand-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--intro-brand-y) + 24px)) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(var(--intro-brand-y)) scale(1);
+  }
+}
+
+@keyframes home-intro-copy-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--intro-copy-y) + 22px));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(var(--intro-copy-y));
+  }
+}
+
+.home-intro__next:focus-visible {
+  outline: 4px solid #0341c8;
+  outline-offset: 5px;
+}
+
+html.home-intro-open,
+body.home-intro-open {
+  overflow: hidden !important;
+}
+
+@media (max-width: 640px) {
+  .home-intro__landing {
+    padding-top: 72px;
+  }
+
+  .home-intro__tagline {
+    line-height: 1.65;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-intro--ready .home-intro__brand,
+  .home-intro--ready .home-intro__tagline,
+  .home-intro--ready .home-intro__next {
+    animation: none;
+    opacity: 1;
+  }
+}

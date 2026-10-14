@@ -5,19 +5,15 @@ import {
   type ReactNode,
   type CSSProperties,
 } from "react";
-import HeroSection from "../components/home/HeroSection";
+import { HomeIntro } from "../components/home/HomeIntro";
 import GlobalBurden from "../components/home/GlobalBurden";
 import Page03SportsTrauma from "../components/home/Page03SportsTrauma";
 import Page04PostOpRehabilitation from "../components/home/Page04PostOpRehabilitation";
 import Page05BirdReturnsToNest from "../components/home/Page05BirdReturnsToNest";
 import {
   HydrogelExplanation,
-  HydrogelFormation,
-  LiposomeLoading,
-  MagneticAlignment,
+  MaterialPipelineStory,
   MaterialLimitations,
-  MaterialResultCards,
-  MaterialsAndSelp,
 } from "../components/home/Page06MaterialStory";
 import { Footer } from "../components/Footer";
 import "../components/home/layers.css";
@@ -60,7 +56,7 @@ function Scene({
   return (
     <section
       id={`home-${index + 1}`}
-      className={`home-scene${index === 0 ? " home-hero-scene" : ""}${footer ? " home-footer-scene" : ""}`}
+      className={`home-scene${footer ? " home-footer-scene" : ""}`}
       aria-label={name}
       style={style}
       aria-hidden={!active}
@@ -93,6 +89,7 @@ export function Home() {
     birdStage,
     birdLandingProgress,
     next,
+    nextScene,
     scenePosition,
     crossfade,
     sportsText,
@@ -104,6 +101,7 @@ export function Home() {
     hydrogelInjection,
     cardTransition,
     nestTitle,
+    pipelineProgress,
   } = useStoryNavigation();
   const viewport = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ width: 1280, height: 720 });
@@ -127,24 +125,8 @@ export function Home() {
   }, []);
   const scenes = [
     {
-      name: "NEST",
-      content: (
-        <>
-          <HeroSection />
-          <button
-            className="home-scroll-cue"
-            onClick={next}
-            aria-label="Explore the NEST story"
-          >
-            <img
-              src={`https://static.igem.wiki/teams/6102/wiki/images/home/chevrons.svg`}
-              width="26.4167"
-              height="29"
-              alt=""
-            />
-          </button>
-        </>
-      ),
+      name: "NEST introduction",
+      content: <HomeIntro onEnter={nextScene} />,
     },
     {
       name: "Global burden",
@@ -166,12 +148,11 @@ export function Home() {
     },
     { name: "No single solution fits all", content: <HydrogelExplanation /> },
     { name: "Material limitations", content: <MaterialLimitations /> },
-    { name: "Material result cards", content: <MaterialResultCards /> },
     { name: "Return to NEST", content: <Page05BirdReturnsToNest /> },
-    { name: "Materials and SELP", content: <MaterialsAndSelp /> },
-    { name: "Magnetic alignment", content: <MagneticAlignment /> },
-    { name: "Hydrogel formation", content: <HydrogelFormation /> },
-    { name: "Liposome loading", content: <LiposomeLoading /> },
+    {
+      name: "NEST material pipeline",
+      content: <MaterialPipelineStory progress={pipelineProgress} />,
+    },
     { name: "NEST footer", content: <Footer story /> },
   ];
   const style = {
@@ -227,17 +208,18 @@ export function Home() {
                     : {}),
                   ...(index === 5
                     ? {
-                        "--cards-exit-y": `${cardTransition * -620}px`,
-                        "--cards-exit-opacity": 1 - cardTransition,
+                        "--cards-yellow-y": `${cardTransition.yellowExit * -760}px`,
+                        "--cards-blue-y": `${cardTransition.yellowExit * -760}px`,
+                        "--limitations-opacity": 1 - cardTransition.yellowExit,
+                        "--limitations-title-y": `${cardTransition.yellowExit * -42}px`,
+                        "--results-text-opacity":
+                          cardTransition.resultTextEntry,
+                        "--results-text-y": `${(1 - cardTransition.resultTextEntry) * 24}px`,
+                        "--results-entry-y": `${(1 - cardTransition.resultEntry) * 34}px`,
+                        "--results-opacity": cardTransition.resultEntry,
                       }
                     : {}),
-                  ...(index === 6
-                    ? {
-                        "--cards-entry-y": `${(1 - cardTransition) * 620}px`,
-                        "--cards-entry-opacity": cardTransition,
-                      }
-                    : {}),
-                  ...(index === 7 ? { "--nest-title": nestTitle } : {}),
+                  ...(index === 6 ? { "--nest-title": nestTitle } : {}),
                 } as CSSProperties
               }
               active={page === index}
@@ -246,8 +228,8 @@ export function Home() {
               birdStage={birdStage}
               birdLandingProgress={birdLandingProgress}
               next={next}
-              pipelineStep={index >= 8 && index <= 11 ? index - 8 : -1}
-              pipelineProgress={Math.max(0, Math.min(3, scenePosition - 8))}
+              pipelineStep={index === 7 ? Math.round(pipelineProgress) : -1}
+              pipelineProgress={pipelineProgress}
             >
               {scene.content}
             </Scene>

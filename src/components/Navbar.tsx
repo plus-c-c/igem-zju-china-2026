@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import Pages from "../pages.ts";
 import "./Navbar.css";
 
-export function Navbar() {
+export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
   const location = useLocation();
   const [expanded, setExpanded] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -123,7 +123,7 @@ export function Navbar() {
         onToggle={handleToggle}
         onPointerEnter={revealNavbar}
         aria-label="Main navigation"
-        className={`nest-navbar${navbarHidden ? " nest-navbar-hidden" : ""}`}
+        className={`nest-navbar${introEntrance ? " nest-navbar-intro-enter" : ""}${navbarHidden ? " nest-navbar-hidden" : ""}`}
         fixed="top"
       >
         <Container fluid>
@@ -132,8 +132,16 @@ export function Navbar() {
             to="/"
             className="brand-link"
             onClick={() => setExpanded(false)}
+            aria-label="ZJU-China home"
           >
-            NEST
+            <img
+              className="brand-team-logo"
+              src="https://static.igem.wiki/teams/6102/wiki/images/team-logo.png"
+              alt=""
+              width="98"
+              height="41"
+            />
+            <span className="brand-team-name">ZJU-China</span>
           </BootstrapNavbar.Brand>
           <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
           <BootstrapNavbar.Collapse id="basic-navbar-nav">
