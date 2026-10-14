@@ -445,7 +445,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, #fffcf1, #ffde70);
+  background: linear-gradient(180deg, #f4f9ff 0%, #fffcf1 15%, #ffde70 100%);
 }
 .home-layer-47 {
   position: absolute;
@@ -479,7 +479,8 @@
   translate: -50% 0;
   overflow-wrap: break-word;
   position: absolute;
-  font-family: "Outfit", sans-serif;
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 700;
   height: 300px;
   line-height: normal;
   left: 640px;
@@ -528,10 +529,10 @@
 }
 .home-layer-57 {
   position: absolute;
-  height: 627px;
-  left: 152px;
-  top: 450px;
-  width: 975px;
+  height: 358px;
+  left: 420px;
+  top: 365px;
+  width: 440px;
 }
 .home-layer-58 {
   position: absolute;
@@ -544,18 +545,78 @@
 }
 .home-layer-59 {
   position: absolute;
-  height: 393px;
-  left: calc(33.33% + 33.33px);
-  top: 248px;
-  width: 360px;
+  height: 213px;
+  left: 530px;
+  overflow: hidden;
+  top: 190px;
+  transform-origin: center bottom;
+  width: 220px;
 }
 .home-layer-60 {
   position: absolute;
-  height: 252px;
-  left: calc(33.33% + 108.33px);
+  height: 246px;
+  left: 50%;
   opacity: 0;
-  top: 286px;
-  width: 210px;
+  top: 0;
+  width: 354px;
+  will-change: opacity, transform;
+}
+.home-flying-bird-frame {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  pointer-events: none;
+}
+.home-flying-bird-frame--1 {
+  animation: home-bird-frame-1 360ms steps(1, end) infinite;
+}
+.home-flying-bird-frame--2 {
+  animation: home-bird-frame-2 360ms steps(1, end) infinite;
+}
+.home-resting-bird-image {
+  position: absolute;
+  left: -57px;
+  top: -86px;
+  display: block;
+  width: 570px;
+  height: 397px;
+  max-width: none;
+  object-fit: contain;
+  pointer-events: none;
+}
+@keyframes home-bird-frame-1 {
+  0%,
+  49.999% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes home-bird-frame-2 {
+  0%,
+  49.999% {
+    opacity: 0;
+  }
+  50%,
+  100% {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-flying-bird-frame--1 {
+    animation: none;
+    opacity: 1;
+  }
+  .home-flying-bird-frame--2 {
+    animation: none;
+    opacity: 0;
+  }
 }
 .home-layer-61 {
   position: absolute;

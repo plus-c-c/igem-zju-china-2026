@@ -10,12 +10,25 @@ import GlobalBurden from "../components/home/GlobalBurden";
 import Page03SportsTrauma from "../components/home/Page03SportsTrauma";
 import Page04PostOpRehabilitation from "../components/home/Page04PostOpRehabilitation";
 import Page05BirdReturnsToNest from "../components/home/Page05BirdReturnsToNest";
+import {
+  HydrogelExplanation,
+  HydrogelFormation,
+  LiposomeLoading,
+  MagneticAlignment,
+  MaterialLimitations,
+  MaterialResultCards,
+  MaterialsAndSelp,
+} from "../components/home/Page06MaterialStory";
 import { Footer } from "../components/Footer";
 import "../components/home/layers.css";
 import "./home.css";
 
 import { StoryContext } from "../components/home/StoryContext";
-import { useStoryNavigation } from "../components/home/useStoryNavigation";
+import {
+  STORY_STOPS,
+  useStoryNavigation,
+} from "../components/home/useStoryNavigation";
+import "../components/home/material-story.css";
 
 function Scene({
   children,
@@ -88,6 +101,8 @@ export function Home() {
     rehabText,
     rehabArt,
     rehabFrame,
+    hydrogelInjection,
+    cardTransition,
     nestTitle,
   } = useStoryNavigation();
   const viewport = useRef<HTMLDivElement>(null);
@@ -149,7 +164,14 @@ export function Home() {
       name: "Post-operative rehabilitation",
       content: <Page04PostOpRehabilitation frameProgress={rehabFrame} />,
     },
+    { name: "No single solution fits all", content: <HydrogelExplanation /> },
+    { name: "Material limitations", content: <MaterialLimitations /> },
+    { name: "Material result cards", content: <MaterialResultCards /> },
     { name: "Return to NEST", content: <Page05BirdReturnsToNest /> },
+    { name: "Materials and SELP", content: <MaterialsAndSelp /> },
+    { name: "Magnetic alignment", content: <MagneticAlignment /> },
+    { name: "Hydrogel formation", content: <HydrogelFormation /> },
+    { name: "Liposome loading", content: <LiposomeLoading /> },
     { name: "NEST footer", content: <Footer story /> },
   ];
   const style = {
@@ -161,7 +183,7 @@ export function Home() {
     <div
       className="home-scroll-space"
       style={{
-        height: 18 * size.height,
+        height: STORY_STOPS.length * size.height,
       }}
     >
       <div
@@ -198,7 +220,24 @@ export function Home() {
                         "--intro-art": index === 2 ? sportsArt : rehabArt,
                       }
                     : {}),
-                  ...(index === 4 ? { "--nest-title": nestTitle } : {}),
+                  ...(index === 4
+                    ? {
+                        "--hydrogel-injection-offset": `${hydrogelInjection * 108}px`,
+                      }
+                    : {}),
+                  ...(index === 5
+                    ? {
+                        "--cards-exit-y": `${cardTransition * -620}px`,
+                        "--cards-exit-opacity": 1 - cardTransition,
+                      }
+                    : {}),
+                  ...(index === 6
+                    ? {
+                        "--cards-entry-y": `${(1 - cardTransition) * 620}px`,
+                        "--cards-entry-opacity": cardTransition,
+                      }
+                    : {}),
+                  ...(index === 7 ? { "--nest-title": nestTitle } : {}),
                 } as CSSProperties
               }
               active={page === index}
@@ -207,8 +246,8 @@ export function Home() {
               birdStage={birdStage}
               birdLandingProgress={birdLandingProgress}
               next={next}
-              pipelineStep={index >= 5 && index <= 9 ? index - 5 : -1}
-              pipelineProgress={Math.max(0, Math.min(4, scenePosition - 5))}
+              pipelineStep={index >= 8 && index <= 11 ? index - 8 : -1}
+              pipelineProgress={Math.max(0, Math.min(3, scenePosition - 8))}
             >
               {scene.content}
             </Scene>

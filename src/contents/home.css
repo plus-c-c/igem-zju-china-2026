@@ -214,6 +214,9 @@ body.home-story-open {
 body.home-story-open .app {
   min-height: 100dvh;
 }
+body.home-story-open .back-to-top {
+  display: none;
+}
 
 .story-viewport {
   position: fixed;
@@ -278,6 +281,25 @@ body.home-story-open .app {
   overflow: hidden;
   background: #f6faff;
 }
+.story-viewport :is(#home-9, #home-10, #home-11) {
+  overflow: visible;
+}
+.story-viewport #home-9 {
+  z-index: 4;
+}
+.story-viewport #home-10 {
+  z-index: 3;
+}
+.story-viewport #home-11 {
+  z-index: 2;
+}
+.story-viewport #home-12 {
+  z-index: 1;
+}
+.story-viewport
+  :is(#home-5, #home-6, #home-7, #home-9, #home-10, #home-11, #home-12) {
+  background: #f4f9ff;
+}
 .story-viewport .home-scene-canvas {
   position: absolute;
   left: 50%;
@@ -286,6 +308,9 @@ body.home-story-open .app {
   height: 720px;
   transform: translate(-50%, -50%) scale(var(--scene-scale));
   transform-origin: center;
+}
+.story-viewport #home-7 {
+  background: transparent;
 }
 .home-pipeline-window {
   height: 720px;
@@ -300,16 +325,16 @@ body.home-story-open .app {
 .story-viewport #home-4 {
   background: linear-gradient(90deg, #f6faff, #ebf2fc 58%, #b8d4f2);
 }
-.story-viewport #home-5 {
-  background: linear-gradient(#fffcf1, #ffde70);
+.story-viewport #home-8 {
+  background: linear-gradient(180deg, #f4f9ff 0%, #fffcf1 15%, #ffde70 100%);
 }
 /* Scroll stages: background first, then copy, then illustration. */
-.story-viewport #home-5 :is(.home-layer-52, .home-layer-53) {
+.story-viewport #home-8 :is(.home-layer-52, .home-layer-53) {
   opacity: var(--nest-title, 1);
   translate: -50% calc((1 - var(--nest-title, 1)) * -42px);
 }
 @media (prefers-reduced-motion: reduce) {
-  .story-viewport #home-5 {
+  .story-viewport #home-8 {
     --nest-title: 1 !important;
   }
 }
@@ -440,6 +465,6 @@ body.home-story-open .app {
 .story-viewport #home-2 .global-burden,
 .story-viewport #home-3 [data-node-id="186:310"],
 .story-viewport #home-4 [data-node-id="186:312"],
-.story-viewport #home-5 [data-node-id="186:313"] {
+.story-viewport #home-8 [data-node-id="186:313"] {
   background: transparent;
 }
