@@ -1,3 +1,44 @@
-.not-found-title {
-  font-size: 100pt;
+.not-found-page {
+  display: grid;
+  min-height: calc(100dvh - 88px);
+  place-items: center;
+  overflow: hidden;
+  background: #ebf1fa;
+}
+
+.not-found-page__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(20px, 3vh, 30px);
+  transform: translateY(-2vh);
+}
+
+.not-found-page__bird {
+  --bird-width: clamp(146px, 18vw, 205px);
+  position: relative;
+  width: var(--bird-width);
+  aspect-ratio: 918 / 528;
+  overflow: hidden;
+}
+
+.not-found-page__bird img {
+  position: absolute;
+  top: calc(var(--bird-width) * -0.357);
+  left: calc(var(--bird-width) * -0.031);
+  width: calc(var(--bird-width) * 2.057);
+  max-width: none;
+  height: auto;
+  user-select: none;
+}
+
+.not-found-page__label {
+  margin: 0;
+  color: #173b64;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(56px, 2.2vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: 0.035em;
+  line-height: 1.1;
+  text-align: center;
 }

@@ -4,7 +4,6 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { getPathMapping, stringToSlug } from "../../utils";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { Navbar } from "../../components/Navbar";
-import { Header } from "../../components/Header";
 import { NotFound } from "../../components/NotFound";
 import { Footer } from "../../components/Footer";
 import { Toc } from "../../components/toc";
@@ -26,6 +25,7 @@ const App = () => {
   // Set Page Title
   const currentPage =
     currentPath in pathMapping ? pathMapping[currentPath] : undefined;
+  const isNotFound = !currentPage;
   const navigationTitle = currentPage
     ? currentPage.navigationTitle
     : "Not Found";
@@ -98,7 +98,13 @@ const App = () => {
 
       {/* Header and PageContent */}
       <main
-        className={`content ${currentPath === "/" ? "content-home" : "content-page"}`}
+        className={`content ${
+          currentPath === "/"
+            ? "content-home"
+            : isNotFound
+              ? "content-not-found"
+              : "content-page"
+        }`}
       >
         <Routes>
           {Object.entries(pathMapping).map(
@@ -120,23 +126,15 @@ const App = () => {
               />
             ),
           )}
-          <Route
-            path="*"
-            element={
-              <>
-                <Header title="Not Found" />
-                <NotFound />
-              </>
-            }
-          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 
-      <BackToTop />
+      {!isNotFound && <BackToTop />}
 
       {/* Footer */}
       {/* MUST mention license AND have a link to team wiki's repository on gitlab.igem.org */}
-      {currentPath !== "/" && <Footer />}
+      {currentPath !== "/" && !isNotFound && <Footer />}
     </div>
   );
 };

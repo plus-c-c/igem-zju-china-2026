@@ -31,10 +31,10 @@ export function MaterialsAndSelp() {
     >
       <ProcessCard side="right" />
       <div className="material-label material-label--left" />
-      <Art name="home-09-pipeline-chain.png" className="material-01-chain" />
-      <Art name="home-09-pipeline-vial.png" className="material-01-vial" />
+      <Art name="home-09-pipeline-chain.avif" className="material-01-chain" />
+      <Art name="home-09-pipeline-vial.avif" className="material-01-vial" />
       <Art
-        name="home-09-pipeline-fermenter.png"
+        name="home-09-pipeline-fermenter.avif"
         className="material-01-fermenter"
       />
       <Art
@@ -54,11 +54,11 @@ export function MagneticAlignment() {
       <ProcessCard side="left" />
       <div className="material-label material-label--right" />
       <Art
-        name="home-10-pipeline-network.png"
+        name="home-10-pipeline-network.avif"
         className="material-02-network"
       />
-      <Art name="home-10-pipeline-vial.png" className="material-02-vial" />
-      <Art name="home-10-pipeline-flask.png" className="material-02-flask" />
+      <Art name="home-10-pipeline-vial.avif" className="material-02-vial" />
+      <Art name="home-10-pipeline-flask.avif" className="material-02-flask" />
       <Art
         name="home-10-pipeline-connector.svg"
         className="material-02-connector"
@@ -75,10 +75,10 @@ export function HydrogelFormation() {
     >
       <ProcessCard side="right" />
       <div className="material-label material-label--left" />
-      <Art name="home-11-pipeline-chain.png" className="material-03-chain" />
-      <Art name="home-11-pipeline-vial.png" className="material-03-vial" />
+      <Art name="home-11-pipeline-chain.avif" className="material-03-chain" />
+      <Art name="home-11-pipeline-vial.avif" className="material-03-vial" />
       <Art
-        name="home-11-pipeline-fermenter.png"
+        name="home-11-pipeline-fermenter.avif"
         className="material-03-fermenter"
       />
       <Art
@@ -98,12 +98,12 @@ export function LiposomeLoading() {
       <ProcessCard side="left" />
       <div className="material-label material-label--right" />
       <Art
-        name="home-12-pipeline-fermenter.png"
+        name="home-12-pipeline-fermenter.avif"
         className="material-04-fermenter"
       />
-      <Art name="home-12-pipeline-vial.png" className="material-04-vial" />
+      <Art name="home-12-pipeline-vial.avif" className="material-04-vial" />
       <Art
-        name="home-12-pipeline-liposome.png"
+        name="home-12-pipeline-liposome.avif"
         className="material-04-liposome"
       />
     </div>
@@ -119,7 +119,7 @@ const limitationCards = [
         scale production
       </>
     ),
-    art: "home-06-card-art-01.png",
+    art: "home-06-card-art-01.avif",
     className: "material-limit-art--aggregate",
   },
   {
@@ -130,7 +130,7 @@ const limitationCards = [
         clinical application
       </>
     ),
-    art: "home-06-card-art-02.png",
+    art: "home-06-card-art-02.avif",
     className: "material-limit-art--bone",
   },
   {
@@ -143,7 +143,7 @@ const limitationCards = [
         microenvironment
       </>
     ),
-    art: "home-06-card-art-03.png",
+    art: "home-06-card-art-03.avif",
     className: "material-limit-art--cycle",
   },
 ];
@@ -151,9 +151,9 @@ const limitationCards = [
 export function MaterialLimitations() {
   const [flipped, setFlipped] = useState([false, false, false]);
   const backgrounds = [
-    "home-06-card-bg-01.png",
-    "home-06-card-bg-02.png",
-    "home-06-card-bg-03.png",
+    "home-06-card-bg-01.avif",
+    "home-06-card-bg-02.avif",
+    "home-06-card-bg-03.avif",
   ];
 
   const toggleCard = (index: number) => {
@@ -208,31 +208,31 @@ export function MaterialResultCards() {
     >
       <div className="material-card-row">
         <article className="material-card">
-          <Art name="home-06-card-bg-01.png" className="material-card-bg" />
+          <Art name="home-06-card-bg-01.avif" className="material-card-bg" />
           <Art
-            name="home-07-card-art-01.png"
+            name="home-07-card-art-01.avif"
             className="material-result-cell"
           />
         </article>
         <article className="material-card">
-          <Art name="home-06-card-bg-02.png" className="material-card-bg" />
+          <Art name="home-06-card-bg-02.avif" className="material-card-bg" />
           <Art
-            name="home-07-card-art-02.png"
+            name="home-07-card-art-02.avif"
             className="material-result-chain"
           />
         </article>
         <article className="material-card">
-          <Art name="home-06-card-bg-03.png" className="material-card-bg" />
+          <Art name="home-06-card-bg-03.avif" className="material-card-bg" />
           <Art
-            name="home-07-card-art-03a.png"
+            name="home-07-card-art-03a.avif"
             className="material-result-magnetic"
           />
           <Art
-            name="home-07-card-art-03b.png"
+            name="home-07-card-art-03b.avif"
             className="material-result-gag"
           />
           <Art
-            name="home-07-card-art-03c.png"
+            name="home-07-card-art-03c.avif"
             className="material-result-liposome"
           />
         </article>
@@ -268,11 +268,11 @@ export function HydrogelExplanation() {
         </p>
       </div>
       <Art
-        name="home-05-solution-syringe.png"
+        name="home-05-solution-syringe.avif"
         className="material-explanation-bone"
       />
       <Art
-        name="home-05-solution-bone.png"
+        name="home-05-solution-bone.avif"
         className="material-explanation-syringe"
       />
     </div>

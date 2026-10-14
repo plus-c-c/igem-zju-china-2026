@@ -1,10 +1,10 @@
 import { motion, useReducedMotion } from "motion/react";
 import { useStory } from "./StoryContext";
 const staticHome = "https://static.igem.wiki/teams/6102/wiki/images/home";
-const imgFlyingBirdFrame1 = `${staticHome}/home-08-bird-flight-01.png`;
-const imgFlyingBirdFrame2 = `${staticHome}/home-08-bird-flight-02.png`;
-const imgBoneNest = `${staticHome}/home-08-bone.png`;
-const imgBirdRestingOnBone = `${staticHome}/home-08-bird-landed.png`;
+const imgFlyingBirdFrame1 = `${staticHome}/home-08-bird-flight-01.avif`;
+const imgFlyingBirdFrame2 = `${staticHome}/home-08-bird-flight-02.avif`;
+const imgBoneNest = `${staticHome}/home-08-bone.avif`;
+const imgBirdRestingOnBone = `${staticHome}/home-08-bird-landed.avif`;
 const imgAccentBlushGlow = `https://static.igem.wiki/teams/6102/wiki/images/home/c207d.svg`;
 const imgAccentYellowOrbit = `https://static.igem.wiki/teams/6102/wiki/images/home/55f95.svg`;
 
