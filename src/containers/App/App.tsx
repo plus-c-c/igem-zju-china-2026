@@ -9,6 +9,7 @@ import { Footer } from "../../components/Footer";
 import { Toc } from "../../components/toc";
 import { BackToTop } from "../../components/BackToTop";
 import { LoadingScreen } from "../../components/LoadingScreen";
+import { HomeIntro } from "../../components/HomeIntro";
 
 const MINIMUM_LOADING_TIME = 600;
 const MAXIMUM_LOADING_TIME = 8000;
@@ -16,6 +17,7 @@ const MAXIMUM_LOADING_TIME = 8000;
 const App = () => {
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
+  const [homeIntroDismissed, setHomeIntroDismissed] = useState(false);
   const pathMapping = getPathMapping();
   const currentPath =
     location.pathname
@@ -26,6 +28,8 @@ const App = () => {
   const currentPage =
     currentPath in pathMapping ? pathMapping[currentPath] : undefined;
   const isNotFound = !currentPage;
+  const isHome = currentPath === "/";
+  const showHomeIntro = isHome && !isLoading && !homeIntroDismissed;
   const navigationTitle = currentPage
     ? currentPage.navigationTitle
     : "Not Found";
@@ -44,10 +48,21 @@ const App = () => {
     };
   }, []);
 
+  useEffect(() => {
+    document.documentElement.classList.toggle("home-intro-open", showHomeIntro);
+    document.body.classList.toggle("home-intro-open", showHomeIntro);
+
+    return () => {
+      document.documentElement.classList.remove("home-intro-open");
+      document.body.classList.remove("home-intro-open");
+    };
+  }, [showHomeIntro]);
+
   useLayoutEffect(() => {
     let cancelled = false;
     const startedAt = performance.now();
     setIsLoading(true);
+    if (currentPath === "/") setHomeIntroDismissed(false);
 
     const waitForPageAssets = async () => {
       await new Promise<void>((resolve) =>
@@ -87,14 +102,18 @@ const App = () => {
     return () => {
       cancelled = true;
     };
-  }, [location.key]);
+  }, [currentPath, location.key]);
 
   return (
     <div className="app">
       <LoadingScreen visible={isLoading} />
 
+      {showHomeIntro && (
+        <HomeIntro onEnter={() => setHomeIntroDismissed(true)} />
+      )}
+
       {/* Navigation */}
-      <Navbar />
+      {!showHomeIntro && <Navbar />}
 
       {/* Header and PageContent */}
       <main
@@ -130,7 +149,7 @@ const App = () => {
         </Routes>
       </main>
 
-      {!isNotFound && <BackToTop />}
+      {!isNotFound && !showHomeIntro && <BackToTop />}
 
       {/* Footer */}
       {/* MUST mention license AND have a link to team wiki's repository on gitlab.igem.org */}

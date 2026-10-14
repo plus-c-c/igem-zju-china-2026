@@ -7,6 +7,12 @@ Upload these files from `public/images/home/` to the same filenames under:
 The page already references the production URLs below and uses local files only
 as a development fallback.
 
+## Homepage intro video
+
+Upload `public/videos/homepage.mp4` to:
+
+`https://static.igem.wiki/teams/6102/wiki/videos/homepage.mp4`
+
 ## 404 — Not found
 
 - `page-404-bird.png`
@@ -38,7 +44,7 @@ as a development fallback.
 - `home-08-bird-flight-01.avif`
 - `home-08-bird-flight-02.avif`
 - `home-08-bone.avif`
-- `home-08-bird-landed.avif`
+- `home-08-bird-landed.png`
 
 ## 09 — Pipeline 1
 

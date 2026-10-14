@@ -183,10 +183,26 @@
   .nest-home {
     scroll-behavior: auto;
   }
+  .home-scroll-cue img {
+    animation: none;
+  }
 }
 .home-scroll-cue {
   display: grid;
   place-items: center;
+}
+.home-scroll-cue img {
+  animation: home-scroll-cue-float 1.7s ease-in-out infinite;
+  will-change: transform;
+}
+@keyframes home-scroll-cue-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
 }
 /* Keep exported SVG root geometry, including the original filter padding. */
 .nest-home img[src$=".svg"] {
@@ -214,10 +230,6 @@ body.home-story-open {
 body.home-story-open .app {
   min-height: 100dvh;
 }
-body.home-story-open .back-to-top {
-  display: none;
-}
-
 .story-viewport {
   position: fixed;
   z-index: 1;

@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 
 export const STORY_STOPS = [
-  0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 5, 6, 7, 7, 7, 7, 7, 8, 9, 10, 11,
-  12,
+  0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 5, 6, 7, 7, 7, 7, 7, 8, 9, 10,
+  11, 12,
 ];
 
 /** Native scrolling controls the timeline without wheel or touch interception. */
@@ -68,23 +68,23 @@ export function useStoryNavigation() {
       : null,
     cardTransition:
       cardCut || (from === 6 && to >= 6) ? (cardCut ? smoothFraction : 1) : 0,
-    sportsText: reveal(5.05),
-    sportsArt: reveal(5.5),
-    sportsFrame: Math.max(0, Math.min(1, position - 6)),
-    rehabText: reveal(8.05),
-    rehabArt: reveal(8.5),
-    rehabFrame: Math.max(0, Math.min(2, position - 9)),
-    hydrogelInjection: Math.max(0, Math.min(1, (position - 12) / 0.9)),
-    nestTitle: reveal(16.1),
-    burdenStage: position < 2 ? 0 : position < 3 ? 1 : 2,
+    sportsText: reveal(6.05),
+    sportsArt: reveal(6.5),
+    sportsFrame: Math.max(0, Math.min(1, position - 7)),
+    rehabText: reveal(9.05),
+    rehabArt: reveal(9.5),
+    rehabFrame: Math.max(0, Math.min(2, position - 10)),
+    hydrogelInjection: Math.max(0, Math.min(1, (position - 13) / 0.9)),
+    nestTitle: reveal(17.1),
+    burdenStage: position < 3 ? 0 : position < 4 ? 1 : 2,
     // Crossfade to the more painful pose during the latter half of this scene.
-    burdenPain: Math.max(0, Math.min(1, position - 2.35)),
-    // Finish counting at 3.75, hold the full number, then crossfade at 4.
-    burdenProgress: Math.max(0, Math.min(1, (position - 3) / 0.75)),
+    burdenPain: Math.max(0, Math.min(1, position - 3.35)),
+    // Finish counting at 4.75, hold the full number, then crossfade at 5.
+    burdenProgress: Math.max(0, Math.min(1, (position - 4) / 0.75)),
     // Spread the flight across both stationary bird-scene intervals.
-    birdProgress: Math.max(0, Math.min(1, (position - 17) / 2)),
-    birdStage: position < 18 ? 0 : position < 19 ? 1 : 2,
-    birdLandingProgress: Math.max(0, Math.min(1, (position - 19) / 0.85)),
+    birdProgress: Math.max(0, Math.min(1, (position - 18) / 2)),
+    birdStage: position < 19 ? 0 : position < 20 ? 1 : 2,
+    birdLandingProgress: Math.max(0, Math.min(1, (position - 20) / 0.85)),
     next: () => seek(Math.floor(position + 0.001) + 1),
     previous: () => seek(Math.ceil(position - 0.001) - 1),
   };

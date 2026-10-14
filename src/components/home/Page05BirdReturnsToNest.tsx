@@ -4,7 +4,7 @@ const staticHome = "https://static.igem.wiki/teams/6102/wiki/images/home";
 const imgFlyingBirdFrame1 = `${staticHome}/home-08-bird-flight-01.avif`;
 const imgFlyingBirdFrame2 = `${staticHome}/home-08-bird-flight-02.avif`;
 const imgBoneNest = `${staticHome}/home-08-bone.avif`;
-const imgBirdRestingOnBone = `${staticHome}/home-08-bird-landed.avif`;
+const imgBirdRestingOnBone = `${staticHome}/home-08-bird-landed.png`;
 const imgAccentBlushGlow = `https://static.igem.wiki/teams/6102/wiki/images/home/c207d.svg`;
 const imgAccentYellowOrbit = `https://static.igem.wiki/teams/6102/wiki/images/home/55f95.svg`;
 
@@ -17,7 +17,23 @@ export default function Page05BirdReturnsToNest() {
   const rawFlight = Math.max(0, Math.min(1, birdProgress));
   const flight = reduced ? Number(rawFlight > 0) : rawFlight;
   const flightEase = flight * flight * (3 - 2 * flight);
-  const flightY = -280 + 490 * flightEase;
+  const remainingFlight = 1 - flightEase;
+  const flightStartX = 768;
+  const flightEndX = 118;
+  const flightStartY = 18;
+  const flightControlY = 70;
+  const flightEndY = 174;
+  // A quadratic curve from the right edge to the resting bird's position.
+  // The flying assets and resting asset share the same source-canvas size, so
+  // matching their rendered boxes also keeps the visible birds similarly sized.
+  const flightX = flightStartX * remainingFlight + flightEndX * flightEase;
+  const flightY =
+    flightStartY * remainingFlight * remainingFlight +
+    2 * remainingFlight * flightEase * flightControlY +
+    flightEndY * flightEase * flightEase;
+  // Enter level and facing left, then smoothly pitch the head downward as the
+  // bird approaches the bone.
+  const flightRotation = 20 - 40 * flightEase;
   const flightEntryOpacity = Math.max(0, Math.min(1, flight * 8));
 
   return (
@@ -77,7 +93,7 @@ export default function Page05BirdReturnsToNest() {
       </div>
       <div
         className="home-layer-59"
-        data-node-id="647:351"
+        data-node-id="510:8"
         data-name="Bird resting on bone"
         style={{
           opacity: birdStage >= 2 ? Math.min(1, landing * 5) : 0,
@@ -90,6 +106,15 @@ export default function Page05BirdReturnsToNest() {
           decoding="async"
           className="home-resting-bird-image"
           src={imgBirdRestingOnBone}
+          onError={(event) => {
+            const fallback = `${import.meta.env.BASE_URL}images/home/home-08-bird-landed.png`;
+            if (
+              event.currentTarget.src !==
+              new URL(fallback, window.location.href).href
+            ) {
+              event.currentTarget.src = fallback;
+            }
+          }}
         />
       </div>
       <div
@@ -98,25 +123,30 @@ export default function Page05BirdReturnsToNest() {
         style={{
           opacity:
             birdStage >= 2 ? 1 - Math.min(1, landing * 5) : flightEntryOpacity,
-          transform: `translate3d(-50%, ${flightY}px, 0)`,
+          transform: `translate3d(calc(-50% + ${flightX}px), ${flightY}px, 0)`,
         }}
       >
-        <img
-          alt=""
-          loading="lazy"
-          decoding="async"
-          className="home-flying-bird-frame home-flying-bird-frame--1"
-          data-node-id="510:6"
-          src={imgFlyingBirdFrame1}
-        />
-        <img
-          alt=""
-          loading="lazy"
-          decoding="async"
-          className="home-flying-bird-frame home-flying-bird-frame--2"
-          data-node-id="510:5"
-          src={imgFlyingBirdFrame2}
-        />
+        <div
+          className="home-flying-bird-rotation"
+          style={{ transform: `rotate(${flightRotation}deg)` }}
+        >
+          <img
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="home-flying-bird-frame home-flying-bird-frame--1"
+            data-node-id="510:6"
+            src={imgFlyingBirdFrame1}
+          />
+          <img
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="home-flying-bird-frame home-flying-bird-frame--2"
+            data-node-id="510:5"
+            src={imgFlyingBirdFrame2}
+          />
+        </div>
       </div>
       <motion.div
         className="home-layer-61"

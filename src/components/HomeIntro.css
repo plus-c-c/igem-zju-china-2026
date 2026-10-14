@@ -1,0 +1,34 @@
+.home-intro {
+  position: fixed;
+  z-index: 1500;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #ebf1fa;
+  cursor: default;
+}
+
+.home-intro--ready {
+  cursor: pointer;
+}
+
+.home-intro:focus-visible {
+  outline: 4px solid #0341c8;
+  outline-offset: -8px;
+}
+
+.home-intro__video {
+  display: block;
+  width: 100vw;
+  height: 100dvh;
+  border: 0;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+html.home-intro-open,
+body.home-intro-open {
+  overflow: hidden !important;
+}

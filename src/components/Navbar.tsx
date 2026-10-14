@@ -10,9 +10,9 @@ import "./Navbar.css";
 export function Navbar() {
   const location = useLocation();
   const [expanded, setExpanded] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [navbarVisible, setNavbarVisible] = useState(true);
   const lastScrollY = useRef(0);
-  const pointerNearby = useRef(false);
 
   useEffect(() => {
     lastScrollY.current = window.scrollY;
@@ -22,16 +22,9 @@ export function Navbar() {
       frame = 0;
       const currentScrollY = window.scrollY;
 
-      if (currentScrollY <= 160) {
-        setNavbarVisible(true);
-      } else if (
-        currentScrollY > lastScrollY.current &&
-        !pointerNearby.current &&
-        !expanded
-      ) {
-        setNavbarVisible(false);
-      } else if (currentScrollY < lastScrollY.current) {
-        setNavbarVisible(true);
+      if (currentScrollY > lastScrollY.current) {
+        setOpenDropdown(null);
+        if (!expanded) setNavbarVisible(false);
       }
 
       lastScrollY.current = currentScrollY;
@@ -49,21 +42,17 @@ export function Navbar() {
   }, [expanded]);
 
   useEffect(() => {
+    setOpenDropdown(null);
     setNavbarVisible(true);
   }, [location.pathname]);
 
   const revealNavbar = () => {
-    pointerNearby.current = true;
     setNavbarVisible(true);
-  };
-
-  const releaseNavbar = () => {
-    pointerNearby.current = false;
-    if (window.scrollY > 160 && !expanded) setNavbarVisible(false);
   };
 
   const handleToggle = (nextExpanded: boolean) => {
     setExpanded(nextExpanded);
+    if (!nextExpanded) setOpenDropdown(null);
     if (nextExpanded) setNavbarVisible(true);
   };
 
@@ -73,6 +62,7 @@ export function Navbar() {
     (item) => !("path" in item && item.path === "/"),
   ).map((item, pageIndex) => {
     if ("folder" in item && item.folder) {
+      const dropdownId = `page-${pageIndex}`;
       const folderItems = item.folder.map((subpage, subpageIndex) => {
         if (subpage.path) {
           return (
@@ -81,7 +71,10 @@ export function Navbar() {
               as={Link}
               to={subpage.path}
               active={location.pathname === subpage.path}
-              onClick={() => setExpanded(false)}
+              onClick={() => {
+                setOpenDropdown(null);
+                setExpanded(false);
+              }}
             >
               {subpage.name}
             </NavDropdown.Item>
@@ -95,7 +88,9 @@ export function Navbar() {
           active={item.folder.some(
             (subpage) => subpage.path === location.pathname,
           )}
-          id={`page-${pageIndex}`}
+          id={dropdownId}
+          show={openDropdown === dropdownId}
+          onToggle={(nextShow) => setOpenDropdown(nextShow ? dropdownId : null)}
         >
           {folderItems}
         </NavDropdown>
@@ -127,7 +122,6 @@ export function Navbar() {
         expanded={expanded}
         onToggle={handleToggle}
         onPointerEnter={revealNavbar}
-        onPointerLeave={releaseNavbar}
         aria-label="Main navigation"
         className={`nest-navbar${navbarHidden ? " nest-navbar-hidden" : ""}`}
         fixed="top"

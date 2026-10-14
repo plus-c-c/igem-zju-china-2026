@@ -269,11 +269,11 @@ export function HydrogelExplanation() {
       </div>
       <Art
         name="home-05-solution-syringe.avif"
-        className="material-explanation-bone"
+        className="material-explanation-syringe"
       />
       <Art
         name="home-05-solution-bone.avif"
-        className="material-explanation-syringe"
+        className="material-explanation-bone"
       />
     </div>
   );

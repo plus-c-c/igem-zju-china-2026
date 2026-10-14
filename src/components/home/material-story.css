@@ -228,6 +228,9 @@
   position: relative;
   width: 367px;
   height: 561px;
+  transform: scale(1);
+  transform-origin: center;
+  transition: transform 180ms cubic-bezier(0.22, 0.75, 0.25, 1);
 }
 .material-card-bg {
   inset: 0;
@@ -265,6 +268,36 @@
 }
 .material-card-flip[data-flipped="true"] .material-card-flip-inner {
   transform: rotateY(180deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .material-card:hover {
+    z-index: 2;
+    transform: scale(1.055);
+  }
+
+  .material-card:hover .material-card-flip {
+    animation: material-card-hover-shake 420ms ease-in-out 160ms 1 both;
+  }
+}
+
+@keyframes material-card-hover-shake {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  22% {
+    transform: translate3d(-5px, 0, 0) rotate(-0.8deg);
+  }
+  44% {
+    transform: translate3d(5px, 0, 0) rotate(0.8deg);
+  }
+  66% {
+    transform: translate3d(-3px, 0, 0) rotate(-0.45deg);
+  }
+  84% {
+    transform: translate3d(2px, 0, 0) rotate(0.25deg);
+  }
 }
 .material-card-face {
   backface-visibility: hidden;
@@ -405,7 +438,7 @@
 }
 .material-explanation-syringe {
   left: 823px;
-  top: 74px;
+  top: -124px;
   width: 366px;
   height: 549px;
   transform: translateY(var(--hydrogel-injection-offset, 0px));
@@ -413,7 +446,7 @@
 }
 .material-explanation-bone {
   left: 844px;
-  top: 27px;
+  top: 167px;
   width: 322px;
   height: 484px;
   animation: none !important;
@@ -421,30 +454,20 @@
   translate: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .home-scene[aria-hidden="false"] .material-art,
-  .home-scene[aria-hidden="false"] .material-process-card,
-  .home-scene[aria-hidden="false"] .material-card {
-    animation: material-enter 540ms ease-out both;
-  }
-  .home-scene[aria-hidden="false"] .material-art {
-    animation-delay: 90ms;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .material-card-flip-inner {
+  .material-card {
     transition: none;
   }
-}
 
-@keyframes material-enter {
-  from {
-    opacity: 0;
-    translate: 0 18px;
+  .material-card:hover {
+    transform: none;
   }
-  to {
-    opacity: 1;
-    translate: 0 0;
+
+  .material-card:hover .material-card-flip {
+    animation: none;
+  }
+
+  .material-card-flip-inner {
+    transition: none;
   }
 }

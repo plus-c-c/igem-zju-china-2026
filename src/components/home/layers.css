@@ -529,7 +529,7 @@
 }
 .home-layer-57 {
   position: absolute;
-  height: 358px;
+  height: 388px;
   left: 420px;
   top: 365px;
   width: 440px;
@@ -547,19 +547,24 @@
   position: absolute;
   height: 213px;
   left: 530px;
-  overflow: hidden;
-  top: 190px;
+  top: 260px;
   transform-origin: center bottom;
   width: 220px;
 }
 .home-layer-60 {
   position: absolute;
-  height: 246px;
+  height: 397px;
   left: 50%;
   opacity: 0;
   top: 0;
-  width: 354px;
+  width: 570px;
   will-change: opacity, transform;
+}
+.home-flying-bird-rotation {
+  position: absolute;
+  inset: 0;
+  transform-origin: 25% 38%;
+  will-change: transform;
 }
 .home-flying-bird-frame {
   position: absolute;
