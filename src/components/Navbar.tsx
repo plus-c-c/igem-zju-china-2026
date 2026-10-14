@@ -136,7 +136,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
           >
             <img
               className="brand-team-logo"
-              src="https://static.igem.wiki/teams/6102/wiki/images/team-logo.png"
+              src="https://static.igem.wiki/teams/6102/wiki/images/team-logo.avif"
               alt=""
               width="98"
               height="41"
