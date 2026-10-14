@@ -15,11 +15,28 @@
 }
 
 .page-article h2 {
-  font-size: 2rem;
+  color: #365dc9;
+  font-size: clamp(2.25rem, 3vw, 2.65rem);
+  font-weight: 800;
+}
+
+.page-article h2::after {
+  display: inline-block;
+  width: 0.72em;
+  height: 0.72em;
+  margin-left: 0em;
+  background-image: url("https://static.igem.wiki/teams/6102/wiki/images/home/home-heading-bird.avif");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto 1.05em;
+  content: "";
+  vertical-align: -0.14em;
 }
 
 .page-article h3 {
+  color: #223c81;
   font-size: 1.75rem;
+  font-weight: 700;
 }
 
 .page-article h4 {
@@ -30,7 +47,7 @@
   position: fixed;
   top: 104px;
   left: 20px;
-  width: 248px;
+  width: 348px;
   max-height: calc(100dvh - 128px);
   padding: 20px 12px;
   z-index: 1020;
@@ -51,7 +68,7 @@
 
 .page-toc-title {
   margin: 0 8px 16px;
-  color: #456682;
+  color: #223c81;
   font-size: 28px;
   font-weight: 400;
 }
@@ -70,7 +87,7 @@
   display: block;
   padding: 10px 12px;
   border-left: 5px solid transparent;
-  color: #456682;
+  color: #595959;
   font-size: 20px;
   line-height: 1.5;
   overflow-wrap: anywhere;
@@ -78,14 +95,14 @@
 }
 
 .page-toc-level-2 a {
-  margin-left: 20px;
-  padding-left: 12px;
+  margin-left: 23px;
+  padding-left: 13px;
   font-size: 18px;
 }
 
 .page-toc-level-1.page-toc-section-current > a {
   border-left-color: currentColor;
-  color: #0c4dc6;
+  color: #365dc9;
   font-weight: 600;
 }
 
@@ -95,7 +112,7 @@
 .page-toc-list a[aria-current="location"] {
   border-left-color: currentColor;
   font-size: 20px;
-  color: #0c4dc6;
+  color: #365dc9;
   font-weight: 600;
 }
 .page-toc-list a:focus-visible {

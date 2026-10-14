@@ -15,8 +15,8 @@
   border-radius: clamp(15px, 4vw, 38px);
   background: #f6faff;
   box-shadow:
-    10px 10px 0 #4475cb,
-    20px 20px 0 #9ebfe4;
+    5px 5px 0 #4475cb,
+    10px 10px 0 #9ebfe4;
 }
 
 .header-water,

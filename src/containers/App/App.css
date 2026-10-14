@@ -25,15 +25,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "Idiqlat";
-  src: url("https://static.igem.wiki/teams/6102/wiki/fonts/idiqlat-regular.ttf")
-    format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   --bs-font-sans-serif: "Outfit", sans-serif;
   --bs-font-monospace: "Outfit", sans-serif;

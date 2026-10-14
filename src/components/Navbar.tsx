@@ -141,7 +141,6 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
               width="98"
               height="41"
             />
-            <span className="brand-team-name">ZJU-China</span>
           </BootstrapNavbar.Brand>
           <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
           <BootstrapNavbar.Collapse id="basic-navbar-nav">

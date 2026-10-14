@@ -1,6 +1,6 @@
 .nest-navbar {
   --bs-navbar-padding-y: 0;
-  background: linear-gradient(90deg, #a3c4eb 0%, #0341c8 100%);
+  background: linear-gradient(90deg, #a3c4eb 0%, #4C93E0 100%);
   padding: 20px 40px;
   min-height: 88px;
   font-family: "Outfit", sans-serif;
@@ -57,13 +57,7 @@
 .nest-navbar .brand-link {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
   color: #0341c8;
-  font-family: "Idiqlat", sans-serif;
-  font-size: 29px;
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: 0;
   padding: 0;
   margin: 0;
   text-decoration: none;
@@ -76,14 +70,9 @@
   object-fit: contain;
 }
 
-.nest-navbar .brand-team-name {
-  display: block;
-  white-space: nowrap;
-}
-
 .nest-navbar .brand-link:hover,
 .nest-navbar .brand-link:focus {
-  color: #0341c8;
+  color: #4C93E0;
 }
 
 .nest-navbar .navbar-nav {
@@ -143,7 +132,7 @@
 .nest-navbar .dropdown-item {
   border-radius: 4px;
   padding: 8px 12px;
-  color: #0341c8;
+  color: #4C93E0;
   white-space: normal;
 }
 
@@ -151,7 +140,7 @@
 .nest-navbar .dropdown-item:focus,
 .nest-navbar .dropdown-item.active {
   background: #e7f0fc;
-  color: #0341c8;
+  color: #4C93E0;
   font-weight: 400;
   font-size: 17px;
 }
@@ -198,11 +187,6 @@
 
   .nest-navbar .dropdown-menu {
     width: 100%;
-  }
-
-  .nest-navbar .brand-link {
-    gap: 10px;
-    font-size: 25px;
   }
 
   .nest-navbar .brand-team-logo {
