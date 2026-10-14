@@ -11,7 +11,7 @@ export function NotFound() {
             width="2360"
             height="1640"
             onError={(event) => {
-              const fallback = `${import.meta.env.BASE_URL}images/page-404-bird.png`;
+              const fallback = `https://static.igem.wiki/teams/6102/wiki/images/page-404-bird.avif`;
               if (
                 event.currentTarget.src !==
                 new URL(fallback, window.location.href).href
