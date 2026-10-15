@@ -133,14 +133,10 @@
 }
 
 .members-page .members-card__role {
-  display: inline-block;
-  margin: 0 0 18px;
-  padding: 5px 12px;
-  border-radius: 8px;
-  color: #624a08;
-  background: #fff2c4;
-  font-size: 0.95rem;
-  font-weight: 600;
+  margin: 0;
+  color: #53657e;
+  font-size: 1rem;
+  font-weight: 500;
   line-height: 1.5;
 }
 
