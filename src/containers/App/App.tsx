@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import "katex/dist/katex.min.css";
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { getPathMapping, stringToSlug } from "../../utils";

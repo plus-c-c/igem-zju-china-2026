@@ -4,7 +4,8 @@
 }
 
 .page-article h2,
-.page-article h3 {
+.page-article h3,
+.page-article li[id] {
   scroll-margin-top: 112px;
 }
 

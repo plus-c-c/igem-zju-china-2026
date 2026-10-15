@@ -36,6 +36,117 @@
   flex-direction: column;
 }
 
+.footer__brand-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  margin-bottom: 18px;
+}
+
+.footer__team-logo {
+  display: block;
+  width: auto;
+  height: 52px;
+}
+
+.footer__uni-logo {
+  display: block;
+  width: auto;
+  height: 36px;
+}
+
+.footer__right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer__contact-title {
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.footer__contact-email a {
+  font-weight: 500;
+}
+
+.footer__bottom {
+  grid-column: 1 / -1;
+}
+
+.footer__supporters-title {
+  margin: 0 0 16px;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.sponsors-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 0.5rem 0;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+}
+
+.sponsors-track {
+  display: flex;
+  width: fit-content;
+  animation: footer-sponsor-scroll 40s linear infinite;
+}
+
+.sponsor-slide {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 168px;
+  height: 92px;
+  margin-right: 1rem;
+  padding: 0.6rem;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.sponsor-slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+@keyframes footer-sponsor-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sponsors-track {
+    animation: none;
+  }
+}
+
 .footer__tagline {
   font-family: "Mansalva", cursive;
   font-weight: 200;
@@ -47,47 +158,6 @@
   flex-direction: column;
   gap: 10px;
   color: #dce8f6;
-}
-
-.footer__sponsors {
-  position: relative;
-  width: min(100%, 520px);
-  height: 104px;
-  margin-top: 14px;
-  overflow: hidden;
-  border-radius: 10px;
-  background: #fff;
-}
-
-.footer__sponsor-logo {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: left center;
-  animation: footer-sponsor-carousel 8s ease-in-out infinite;
-}
-
-.footer__sponsor-logo:nth-child(2) {
-  animation-delay: -4s;
-}
-
-@keyframes footer-sponsor-carousel {
-  0%,
-  45% {
-    opacity: 1;
-  }
-
-  50%,
-  95% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }
 
 .footer a {
@@ -120,14 +190,17 @@
     grid-template-columns: 1fr;
     gap: 52px;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .footer__sponsor-logo {
-    animation: none;
+  .footer__brand-row {
+    gap: 1rem;
   }
 
-  .footer__sponsor-logo:nth-child(2) {
-    display: none;
+  .footer__uni-logo {
+    height: 26px;
+  }
+
+  .sponsor-slide {
+    width: 140px;
+    height: 80px;
   }
 }
