@@ -17,6 +17,9 @@ const App = () => {
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
   const [homeIntroReady, setHomeIntroReady] = useState(false);
+  const [isMobileNavigation, setIsMobileNavigation] = useState(() =>
+    window.matchMedia("(max-width: 991.98px)").matches,
+  );
   const pathMapping = getPathMapping();
   const currentPath =
     location.pathname
@@ -31,6 +34,17 @@ const App = () => {
   const navigationTitle = currentPage
     ? currentPage.navigationTitle
     : "Not Found";
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 991.98px)");
+    const updateMobileNavigation = () =>
+      setIsMobileNavigation(mediaQuery.matches);
+
+    updateMobileNavigation();
+    mediaQuery.addEventListener("change", updateMobileNavigation);
+    return () =>
+      mediaQuery.removeEventListener("change", updateMobileNavigation);
+  }, []);
 
   useEffect(() => {
     const handleHomeIntroReady = () => setHomeIntroReady(true);
@@ -108,7 +122,13 @@ const App = () => {
       <LoadingScreen visible={isLoading} />
 
       {/* Navigation */}
-      {(!isHome || homeIntroReady) && <Navbar introEntrance={isHome} />}
+      {(!isHome || homeIntroReady || isMobileNavigation) && (
+        <Navbar
+          introEntrance={isHome && homeIntroReady && !isMobileNavigation}
+          isHome={isHome}
+          alwaysVisible={isMobileNavigation}
+        />
+      )}
 
       {/* Header and PageContent */}
       <main

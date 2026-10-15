@@ -84,7 +84,7 @@ export function useStoryNavigation() {
     },
     sportsText: reveal(6.05),
     sportsArt: reveal(6.5),
-    sportsFrame: Math.max(0, Math.min(1, position - 7)),
+    sportsFrame: Math.max(0, Math.min(2, (position - 7) * 2)),
     rehabText: reveal(9.05),
     rehabArt: reveal(9.5),
     rehabFrame: Math.max(0, Math.min(2, position - 10)),

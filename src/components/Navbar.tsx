@@ -7,7 +7,15 @@ import { useEffect, useRef, useState } from "react";
 import Pages from "../pages.ts";
 import "./Navbar.css";
 
-export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
+export function Navbar({
+  introEntrance = false,
+  isHome = false,
+  alwaysVisible = false,
+}: {
+  introEntrance?: boolean;
+  isHome?: boolean;
+  alwaysVisible?: boolean;
+}) {
   const location = useLocation();
   const [expanded, setExpanded] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -15,19 +23,27 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
   const lastScrollY = useRef(0);
 
   useEffect(() => {
+    if (alwaysVisible) {
+      setNavbarVisible(true);
+      return;
+    }
+
     lastScrollY.current = window.scrollY;
     let frame = 0;
 
     const updateNavbar = () => {
       frame = 0;
       const currentScrollY = window.scrollY;
+      const scrollDelta = currentScrollY - lastScrollY.current;
 
-      if (currentScrollY > lastScrollY.current) {
+      if (scrollDelta > 4) {
         setOpenDropdown(null);
         if (!expanded) setNavbarVisible(false);
+        lastScrollY.current = currentScrollY;
+      } else if (scrollDelta < -4) {
+        if (!isHome) setNavbarVisible(true);
+        lastScrollY.current = currentScrollY;
       }
-
-      lastScrollY.current = currentScrollY;
     };
 
     const handleScroll = () => {
@@ -39,10 +55,11 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
       window.removeEventListener("scroll", handleScroll);
       window.cancelAnimationFrame(frame);
     };
-  }, [expanded]);
+  }, [alwaysVisible, expanded, isHome]);
 
   useEffect(() => {
     setOpenDropdown(null);
+    setExpanded(false);
     setNavbarVisible(true);
   }, [location.pathname]);
 
@@ -56,7 +73,7 @@ export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
     if (nextExpanded) setNavbarVisible(true);
   };
 
-  const navbarHidden = !navbarVisible && !expanded;
+  const navbarHidden = !alwaysVisible && !navbarVisible && !expanded;
 
   const pages = Pages.filter(
     (item) => !("path" in item && item.path === "/"),

@@ -47,8 +47,10 @@
   position: fixed;
   top: 104px;
   left: 20px;
-  width: 348px;
+  /* Controls the overall width of the table of contents. */
+  width: 278px;
   max-height: calc(100dvh - 128px);
+  /* Controls the inner spacing around the entire table of contents. */
   padding: 20px 12px;
   z-index: 1020;
   opacity: 0;
@@ -67,8 +69,10 @@
 }
 
 .page-toc-title {
+  /* The last value controls the space below the "On this page" title. */
   margin: 0 8px 16px;
   color: #223c81;
+  /* Controls the font size of the "On this page" title. */
   font-size: 28px;
   font-weight: 400;
 }
@@ -85,19 +89,34 @@
 
 .page-toc-list a {
   display: block;
+  /* Vertical padding controls the space above and below every TOC entry. */
   padding: 10px 12px;
   border-left: 5px solid transparent;
   color: #595959;
+  /* Default font size for first-level TOC entries generated from h2 headings. */
   font-size: 20px;
+  /* Controls the spacing between wrapped lines inside a TOC entry. */
   line-height: 1.5;
   overflow-wrap: anywhere;
   text-decoration: none;
 }
 
 .page-toc-level-2 a {
+  /* Controls how far second-level entries are indented from the left. */
   margin-left: 23px;
   padding-left: 13px;
+  /* Font size for second-level entries generated from h3 and h4 headings. */
   font-size: 18px;
+}
+
+/* Add margin here to control the distance between adjacent second-level entries. */
+.page-toc-level-2 + .page-toc-level-2 {
+  margin-top: 0;
+}
+
+/* Add margin here to control the distance between first-level heading groups. */
+.page-toc-level-1:not(:first-child) {
+  margin-top: 0;
 }
 
 .page-toc-level-1.page-toc-section-current > a {
@@ -111,6 +130,7 @@
 }
 .page-toc-list a[aria-current="location"] {
   border-left-color: currentColor;
+  /* This overrides the normal second-level font size while an entry is active. */
   font-size: 20px;
   color: #365dc9;
   font-weight: 600;
@@ -135,13 +155,11 @@
 }
 
 @media (min-width: 1200px) {
-  .page-layout-with-toc,
-  .page-header-with-toc {
+  .page-layout-with-toc {
     padding-left: 288px;
     padding-right: 144px;
   }
-  .page-layout-with-toc .page-article,
-  .page-header-with-toc .header {
+  .page-layout-with-toc .page-article {
     max-width: 1100px;
   }
 }

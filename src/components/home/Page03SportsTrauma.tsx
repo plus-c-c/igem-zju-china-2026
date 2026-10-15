@@ -1,7 +1,8 @@
 import { useReducedMotion } from "motion/react";
 
-const imgSportsTraumaFrame1 = `https://static.igem.wiki/teams/6102/wiki/images/home/person-2-frame-1.avif`;
-const imgSportsTraumaFrame2 = `https://static.igem.wiki/teams/6102/wiki/images/home/person-2-frame-2.avif`;
+const imgSportsTraumaFrame1 = `https://static.igem.wiki/teams/6102/wiki/images/home/home-03-sports-trauma-01.avif`;
+const imgSportsTraumaFrame2 = `https://static.igem.wiki/teams/6102/wiki/images/home/home-03-sports-trauma-02.avif`;
+const imgSportsTraumaFrame3 = `https://static.igem.wiki/teams/6102/wiki/images/home/home-03-sports-trauma-03.avif`;
 const imgPage03PowderDisc = `https://static.igem.wiki/teams/6102/wiki/images/home/3249a.svg`;
 const imgPage03YellowAccent = `https://static.igem.wiki/teams/6102/wiki/images/home/ff246.svg`;
 const imgPage03PinkSpark = `https://static.igem.wiki/teams/6102/wiki/images/home/ea453.svg`;
@@ -12,7 +13,7 @@ export default function Page03SportsTrauma({
   frameProgress: number;
 }) {
   const reduced = useReducedMotion();
-  const frame = reduced ? Number(frameProgress >= 0.5) : frameProgress;
+  const frame = reduced ? Math.round(frameProgress) : frameProgress;
   return (
     <div
       className="home-layer-12"
@@ -77,20 +78,32 @@ export default function Page03SportsTrauma({
       >
         <img
           alt="An athlete holding an injured knee after a sports accident"
+          data-node-id="829:5"
           loading="lazy"
           decoding="async"
           className="home-layer-9 story-frame-image"
           src={imgSportsTraumaFrame1}
-          style={{ opacity: 1 - frame }}
+          style={{ opacity: Math.max(0, 1 - frame) }}
         />
         <img
           alt=""
           aria-hidden="true"
+          data-node-id="829:7"
           loading="lazy"
           decoding="async"
           className="home-layer-9 story-frame-image"
           src={imgSportsTraumaFrame2}
-          style={{ opacity: frame }}
+          style={{ opacity: Math.max(0, 1 - Math.abs(frame - 1)) }}
+        />
+        <img
+          alt=""
+          aria-hidden="true"
+          data-node-id="829:9"
+          loading="lazy"
+          decoding="async"
+          className="home-layer-9 story-frame-image"
+          src={imgSportsTraumaFrame3}
+          style={{ opacity: Math.max(0, frame - 1) }}
         />
       </div>
       <div

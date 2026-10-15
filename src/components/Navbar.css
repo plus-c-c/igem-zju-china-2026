@@ -173,6 +173,18 @@
     padding: 20px 24px;
   }
 
+  .nest-navbar-hidden {
+    transform: translateY(0);
+  }
+
+  .nest-navbar-intro-enter {
+    animation: none;
+  }
+
+  .navbar-reveal-zone {
+    display: none;
+  }
+
   .nest-navbar .navbar-nav {
     align-items: stretch;
     gap: 4px;

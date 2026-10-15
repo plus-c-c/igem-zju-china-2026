@@ -61,13 +61,10 @@ export function Toc({
         footerRect.top < window.innerHeight &&
         footerRect.bottom > 0;
       setVisible(header.getBoundingClientRect().bottom <= 0 && !footerVisible);
-      const offset = elements[0]
-        ? parseFloat(window.getComputedStyle(elements[0]).scrollMarginTop) ||
-          112
-        : 112;
+      const viewportCenter = window.innerHeight / 2;
       let current = elements[0]?.id || "";
       for (const element of elements) {
-        if (element.getBoundingClientRect().top <= offset + 2)
+        if (element.getBoundingClientRect().top <= viewportCenter)
           current = element.id;
         else break;
       }
@@ -125,13 +122,18 @@ export function Toc({
           .reverse()
           .find((heading) => heading.level === 1)?.id || ""
       : "";
+  const visibleHeadings = headings.filter((heading, index) => {
+    if (heading.level === 1) return true;
+    const parentId = headings
+      .slice(0, index)
+      .reverse()
+      .find((candidate) => candidate.level === 1)?.id;
+    return parentId === activeTopLevelId;
+  });
 
   return (
     <>
-      <div
-        ref={headerRef}
-        className={headings.length > 0 ? "page-header-with-toc" : ""}
-      >
+      <div ref={headerRef}>
         <Header title={title} />
       </div>
       <div
@@ -145,7 +147,7 @@ export function Toc({
           >
             <h2 className="page-toc-title">On this page</h2>
             <ul id="page-toc-list" className="page-toc-list">
-              {headings.map((heading) => (
+              {visibleHeadings.map((heading) => (
                 <li
                   key={heading.id}
                   className={`page-toc-level-${heading.level}${

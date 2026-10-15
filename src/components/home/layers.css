@@ -4,6 +4,7 @@
   inset: 0;
   max-width: none;
   object-position: bottom;
+  object-fit: contain;
   pointer-events: none;
   width: 100%;
   height: 100%;
@@ -127,7 +128,7 @@
 }
 .home-layer-23 {
   position: absolute;
-  height: 485px;
+  height: 487px;
   left: calc(50% + 2px);
   top: 142px;
   width: 580px;

@@ -1,6 +1,5 @@
 .header {
-  width: 90%;
-  max-width: 1000px;
+  width: 70%;
   margin: 0 auto;
   padding: clamp(28px, 4vw, 52px) 12px clamp(48px, 6vw, 72px);
 }
@@ -9,14 +8,14 @@
   position: relative;
   isolation: isolate;
   width: 100%;
-  min-height: 330px;
+  min-height: clamp(170px, 25.78vw, 330px);
   overflow: visible;
   border: 2px solid rgba(219, 177, 52, 0.36);
   border-radius: clamp(15px, 4vw, 38px);
   background: #f6faff;
   box-shadow:
-    5px 5px 0 #4475cb,
-    10px 10px 0 #9ebfe4;
+    8px 8px 0 #4475cb,
+    16px 16px 0 #9ebfe4;
 }
 
 .header-water,
@@ -58,7 +57,7 @@
   padding: 0 clamp(24px, 6vw, 96px);
   color: #fff;
   font-family: "Outfit", sans-serif;
-  font-size: clamp(6.6rem, 5.2vw, 8.8rem);
+  font-size: clamp(2.5rem, 8vw, 8.8rem);
   font-weight: 700;
   line-height: 0.95;
   letter-spacing: -0.045em;
@@ -67,16 +66,6 @@
   -webkit-text-stroke: clamp(1px, 0.18vw, 3px) rgba(211, 209, 183, 0.9);
   paint-order: stroke fill;
   text-shadow: 0 6px 0 rgba(105, 90, 190, 0.28);
-}
-
-@media (max-width: 600px) {
-  .header-card {
-    min-height: 170px;
-  }
-
-  .header-title {
-    font-size: clamp(2.5rem, 13vw, 4rem);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
