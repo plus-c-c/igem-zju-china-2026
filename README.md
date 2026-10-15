@@ -34,8 +34,9 @@ for web development.
 
    ### Important:
 
-   Ensure you are using Node.js version `^18.18.0 or >=20.0.0` to mostly avoid compatibility issues. Node `v18.20.0` is
-   recommended for this project. You can check your Node version by running `node -v` in your terminal.
+   Ensure you are using Node.js version `>=22.12.0` to avoid compatibility issues (a dependency of
+   KaTeX requires Node 22.12 or newer). Node `v22` (LTS) is recommended for this project. You can
+   check your Node version by running `node -v` in your terminal.
 
 3. Start the development server:
    ```bash
