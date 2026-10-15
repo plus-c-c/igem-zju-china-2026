@@ -13,6 +13,8 @@ function MemberCard({ member, index }: { member: Member; index: number }) {
     <article
       className={`members-card${index % 2 ? " members-card--reversed" : ""}`}
       aria-labelledby={member.id}
+      aria-describedby={`${member.id}-bio`}
+      tabIndex={0}
     >
       <div className="members-card__portrait">
         {member.imageUrl && !imageFailed ? (
@@ -37,12 +39,16 @@ function MemberCard({ member, index }: { member: Member; index: number }) {
         )}
       </div>
       <div className="members-card__details">
-        <h3 id={member.id}>
-          {member.name}
-          {member.nickname ? ` (${member.nickname})` : ""}
-        </h3>
-        <p className="members-card__role">{member.role}</p>
-        <p className="members-card__bio">{member.bio}</p>
+        <div className="members-card__summary">
+          <h3 id={member.id}>
+            {member.name}
+            {member.nickname ? ` (${member.nickname})` : ""}
+          </h3>
+          <p className="members-card__role">{member.role}</p>
+        </div>
+        <p className="members-card__bio" id={`${member.id}-bio`}>
+          {member.bio}
+        </p>
       </div>
     </article>
   );

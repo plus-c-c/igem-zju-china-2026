@@ -50,6 +50,21 @@
   box-shadow:
     5px 5px 0 #4475cb,
     10px 10px 0 #c3d9f1;
+  transition:
+    transform 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.members-card:is(:hover, :focus-visible) {
+  transform: translateY(-5px);
+  box-shadow:
+    7px 7px 0 #c092d0,
+    14px 14px 0 #8bdfd6;
+}
+
+.members-card:focus-visible {
+  outline: 3px solid #365dc9;
+  outline-offset: 4px;
 }
 
 .members-card--reversed {
@@ -95,7 +110,21 @@
 }
 
 .members-card__details {
+  display: grid;
+  grid-template-areas: "details";
+  align-self: stretch;
   min-width: 0;
+  overflow: hidden;
+}
+
+/* Sharing a grid cell lets the full biography determine the panel height. */
+.members-card__summary,
+.members-page .members-card__bio {
+  grid-area: details;
+}
+
+.members-card__summary {
+  align-self: center;
   padding: 28px;
 }
 
@@ -116,11 +145,30 @@
 }
 
 .members-page .members-card__bio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0;
-  color: #33445f;
-  font-size: 1.125rem;
-  line-height: 1.75;
+  padding: 24px;
+  color: #fff;
+  background: #6a4c9c;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
   overflow-wrap: break-word;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(100%);
+  transition:
+    opacity 400ms ease,
+    transform 400ms ease,
+    visibility 400ms;
+}
+
+.members-card:is(:hover, :focus-visible) .members-card__bio {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 @media (max-width: 767.98px) {
@@ -149,11 +197,45 @@
     margin: 24px auto 0;
   }
 
-  .members-card__details {
+  .members-card__summary {
     padding: 24px;
   }
 
   .members-section > h2 {
     font-size: 2rem;
+  }
+}
+
+/* Touch screens show the introduction directly without needing a hover. */
+@media (hover: none) {
+  .members-card:is(:hover, :focus-visible) {
+    transform: none;
+  }
+
+  .members-card__details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .members-card__summary {
+    align-self: stretch;
+  }
+
+  .members-page .members-card__bio {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .members-card,
+  .members-page .members-card__bio {
+    transition: none;
+  }
+
+  .members-card:is(:hover, :focus-visible) {
+    transform: none;
   }
 }

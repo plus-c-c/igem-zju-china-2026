@@ -168,7 +168,9 @@ export const members: Member[] = [
     role: "Primary PI",
     group: "pis",
     bio: "Professor Ming Chen is the head of the Bioinformatics discipline at Zhejiang University and Director of the Department of Bioinformatics. He has long been engaged in scientific research in bioinformatics and systems biology, focusing on big data integration and mining, non-coding RNA bioinformatics, biological network construction, and precision medicine.",
-    imageUrl: "https://static.igem.wiki/teams/5869/members/cm.webp",
+    imageUrl:
+      "https://static.igem.wiki/teams/6102/wiki/images/member/mingchen.avif",
+    imagePosition: "98% 50%",
   },
   {
     id: "fan-yang",
@@ -176,7 +178,9 @@ export const members: Member[] = [
     role: "Primary PI",
     group: "pis",
     bio: "Fan Yang is an Associate Professor at the School of Life Sciences. Her research focuses on Biochemistry, Molecular Biology, and Basic Synthetic Biology.",
-    imageUrl: "https://static.igem.wiki/teams/5869/members/yf.webp",
+    imageUrl:
+      "https://static.igem.wiki/teams/6102/wiki/images/member/fanyang.avif",
+    imagePosition: "98% 50%",
   },
   {
     id: "boyue-zhang",
