@@ -17,8 +17,8 @@ const App = () => {
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
   const [homeIntroReady, setHomeIntroReady] = useState(false);
-  const [isMobileNavigation, setIsMobileNavigation] = useState(() =>
-    window.matchMedia("(max-width: 991.98px)").matches,
+  const [isMobileNavigation, setIsMobileNavigation] = useState(
+    () => window.matchMedia("(max-width: 991.98px)").matches,
   );
   const pathMapping = getPathMapping();
   const currentPath =
@@ -125,8 +125,6 @@ const App = () => {
       {(!isHome || homeIntroReady || isMobileNavigation) && (
         <Navbar
           introEntrance={isHome && homeIntroReady && !isMobileNavigation}
-          isHome={isHome}
-          alwaysVisible={isMobileNavigation}
         />
       )}
 

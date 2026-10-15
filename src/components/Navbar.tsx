@@ -3,46 +3,31 @@ import Nav from "react-bootstrap/Nav";
 import BootstrapNavbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Pages from "../pages.ts";
 import "./Navbar.css";
 
-export function Navbar({
-  introEntrance = false,
-  isHome = false,
-  alwaysVisible = false,
-}: {
-  introEntrance?: boolean;
-  isHome?: boolean;
-  alwaysVisible?: boolean;
-}) {
+export function Navbar({ introEntrance = false }: { introEntrance?: boolean }) {
   const location = useLocation();
   const [expanded, setExpanded] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [navbarVisible, setNavbarVisible] = useState(true);
-  const lastScrollY = useRef(0);
+  const [introPlaying, setIntroPlaying] = useState(introEntrance);
 
   useEffect(() => {
-    if (alwaysVisible) {
-      setNavbarVisible(true);
-      return;
-    }
-
-    lastScrollY.current = window.scrollY;
+    setOpenDropdown(null);
+    setExpanded(false);
     let frame = 0;
 
     const updateNavbar = () => {
       frame = 0;
-      const currentScrollY = window.scrollY;
-      const scrollDelta = currentScrollY - lastScrollY.current;
+      const atTop = window.scrollY < 10;
+      setNavbarVisible(atTop);
 
-      if (scrollDelta > 4) {
+      if (!atTop) {
         setOpenDropdown(null);
-        if (!expanded) setNavbarVisible(false);
-        lastScrollY.current = currentScrollY;
-      } else if (scrollDelta < -4) {
-        if (!isHome) setNavbarVisible(true);
-        lastScrollY.current = currentScrollY;
+        setExpanded(false);
+        setIntroPlaying(false);
       }
     };
 
@@ -50,30 +35,20 @@ export function Navbar({
       if (!frame) frame = window.requestAnimationFrame(updateNavbar);
     };
 
+    updateNavbar();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.cancelAnimationFrame(frame);
     };
-  }, [alwaysVisible, expanded, isHome]);
-
-  useEffect(() => {
-    setOpenDropdown(null);
-    setExpanded(false);
-    setNavbarVisible(true);
   }, [location.pathname]);
-
-  const revealNavbar = () => {
-    setNavbarVisible(true);
-  };
 
   const handleToggle = (nextExpanded: boolean) => {
     setExpanded(nextExpanded);
     if (!nextExpanded) setOpenDropdown(null);
-    if (nextExpanded) setNavbarVisible(true);
   };
 
-  const navbarHidden = !alwaysVisible && !navbarVisible && !expanded;
+  const navbarHidden = !navbarVisible;
 
   const pages = Pages.filter(
     (item) => !("path" in item && item.path === "/"),
@@ -128,56 +103,53 @@ export function Navbar({
   });
 
   return (
-    <>
-      <div
-        className={`navbar-reveal-zone${navbarHidden ? " navbar-reveal-zone-active" : ""}`}
-        aria-hidden="true"
-        onPointerEnter={revealNavbar}
-      />
-      <BootstrapNavbar
-        expand="lg"
-        expanded={expanded}
-        onToggle={handleToggle}
-        onPointerEnter={revealNavbar}
-        aria-label="Main navigation"
-        className={`nest-navbar${introEntrance ? " nest-navbar-intro-enter" : ""}${navbarHidden ? " nest-navbar-hidden" : ""}`}
-        fixed="top"
-      >
-        <Container fluid>
-          <BootstrapNavbar.Brand
-            as={Link}
-            to="/"
-            className="brand-link"
-            onClick={() => setExpanded(false)}
-            aria-label="ZJU-China home"
-          >
-            <img
-              className="brand-team-logo"
-              src="https://static.igem.wiki/teams/6102/wiki/images/team-logo.avif"
-              alt=""
-              width="98"
-              height="41"
-            />
-          </BootstrapNavbar.Brand>
-          <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
-          <BootstrapNavbar.Collapse id="basic-navbar-nav">
-            <Nav className="navbar-nav">
-              {pages}
-              <span
-                className="navigation-cart"
-                title="Shopping cart — not available yet"
-              >
-                <img
-                  src={`https://static.igem.wiki/teams/6102/wiki/images/navigation/cart.svg`}
-                  alt="Shopping cart (not available yet)"
-                  width="22"
-                  height="22"
-                />
-              </span>
-            </Nav>
-          </BootstrapNavbar.Collapse>
-        </Container>
-      </BootstrapNavbar>
-    </>
+    <BootstrapNavbar
+      expand="lg"
+      expanded={expanded}
+      onToggle={handleToggle}
+      aria-label="Main navigation"
+      aria-hidden={navbarHidden}
+      inert={navbarHidden}
+      onAnimationEnd={(event) => {
+        if (event.target === event.currentTarget) setIntroPlaying(false);
+      }}
+      className={`nest-navbar${introPlaying ? " nest-navbar-intro-enter" : ""}${navbarHidden ? " nest-navbar-hidden" : ""}`}
+      fixed="top"
+    >
+      <Container fluid>
+        <BootstrapNavbar.Brand
+          as={Link}
+          to="/"
+          className="brand-link"
+          onClick={() => setExpanded(false)}
+          aria-label="ZJU-China home"
+        >
+          <img
+            className="brand-team-logo"
+            src="https://static.igem.wiki/teams/6102/wiki/images/team-logo.avif"
+            alt=""
+            width="98"
+            height="41"
+          />
+        </BootstrapNavbar.Brand>
+        <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
+        <BootstrapNavbar.Collapse id="basic-navbar-nav">
+          <Nav className="navbar-nav">
+            {pages}
+            <span
+              className="navigation-cart"
+              title="Shopping cart — not available yet"
+            >
+              <img
+                src={`https://static.igem.wiki/teams/6102/wiki/images/navigation/cart.svg`}
+                alt="Shopping cart (not available yet)"
+                width="22"
+                height="22"
+              />
+            </span>
+          </Nav>
+        </BootstrapNavbar.Collapse>
+      </Container>
+    </BootstrapNavbar>
   );
 }
