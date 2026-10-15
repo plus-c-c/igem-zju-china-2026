@@ -1040,7 +1040,7 @@ export function Design() {
           </p>
           <figure className="figure d-block my-4 text-center">
             <img
-              src="https://static.igem.wiki/teams/6102/wiki/images/design/03/03.avif"
+              src="https://static.igem.wiki/teams/6102/wiki/images/design/03/04.avif"
               alt="Assembly of the CPC and Link-N dual-function module onto the SELP scaffold."
               className="figure-img img-fluid rounded"
               style={{ width: "75%" }}
