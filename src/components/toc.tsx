@@ -145,7 +145,7 @@ export function Toc({
             aria-label="On this page"
             className={`page-toc ${visible ? "page-toc-visible" : ""}`}
           >
-            <h2 className="page-toc-title">On this page</h2>
+            <h2 className="page-toc-title">{title || "On this page"}</h2>
             <ul id="page-toc-list" className="page-toc-list">
               {visibleHeadings.map((heading) => (
                 <li
