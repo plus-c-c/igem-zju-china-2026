@@ -12,6 +12,9 @@
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
   border-radius: 24px;
   box-shadow: 6px 6px 0 #9ebfe4;
 }
@@ -74,6 +77,8 @@
 .members-card--reversed .members-card__portrait {
   grid-column: 2;
   grid-row: 1;
+  margin-right: 12px;
+  margin-left: 28px;
 }
 
 .members-card--reversed .members-card__details {
@@ -83,7 +88,7 @@
 
 .members-card__portrait {
   min-width: 0;
-  margin: 20px;
+  margin: 20px 28px 20px 12px;
   overflow: hidden;
   border-radius: 14px;
   background: #e8f0fb;
@@ -188,7 +193,8 @@
     grid-row: auto;
   }
 
-  .members-card__portrait {
+  .members-card__portrait,
+  .members-card--reversed .members-card__portrait {
     width: min(260px, calc(100% - 40px));
     margin: 24px auto 0;
   }
