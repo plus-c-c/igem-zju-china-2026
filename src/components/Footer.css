@@ -1,52 +1,127 @@
 .footer {
+  --footer-arch-height: clamp(64px, 7vw, 104px);
   position: relative;
+  isolation: isolate;
+  min-height: 368px;
   margin-top: clamp(80px, 8vw, 128px);
+  padding: calc(32px + var(--footer-arch-height)) 40px 32px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+  background: transparent;
   color: #fff;
   font-family: "Outfit", sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.045em;
 }
 
-.footer--story {
+.footer::before {
   position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  margin-top: 0;
-}
-
-/* Crown humps above the rounded footer body (referencing the 2025 design) */
-
-.footer-wings {
-  position: relative;
-  z-index: 0;
-  width: 60%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.footer-wings svg {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.footer-body {
-  position: relative;
-  z-index: 1;
-  margin-top: -1px;
-  padding: 3.5rem 0 2rem;
-  background: linear-gradient(180deg, #4a78c9 0%, #173b64 100%);
-  border-top-left-radius: 5rem;
-  border-top-right-radius: 5rem;
+  z-index: -1;
+  inset: 0;
+  border-radius: 50% 50% 0 0 / var(--footer-arch-height)
+    var(--footer-arch-height) 0 0;
+  background: #1f66b2;
+  content: "";
 }
 
 .footer p {
   margin: 0;
 }
 
+.footer__left {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__team-logo {
+  display: block;
+  width: auto;
+  height: 52px;
+  margin-bottom: 16px;
+}
+
+.footer__right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer__contact-title {
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.footer__contact-email a {
+  font-weight: 500;
+}
+
+.footer__bottom {
+  grid-column: 1 / -1;
+}
+
+.footer__supporters-title {
+  margin: 0 0 16px;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.footer__logos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+}
+
+.footer__logo-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer__logo-group:last-child {
+  justify-content: flex-end;
+}
+
+.footer__logo-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.footer__logo-chip img {
+  display: block;
+  width: auto;
+  height: 34px;
+}
+
+.footer__tagline {
+  font-family: "Mansalva", cursive;
+  font-weight: 200;
+  font-size: 22px;
+}
+
+.footer__legal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #dce8f6;
+}
+
 .footer a {
   color: #fff;
-  font-weight: 700;
+  font-weight: 500;
   text-decoration: none;
 }
 
@@ -56,207 +131,31 @@
   text-decoration: underline;
 }
 
-/* Top row: team logo / university / contact */
-
-.footer-top {
-  margin-bottom: 3rem;
-}
-
-.footer-col--brand {
-  display: flex;
-  justify-content: center;
-}
-
-@media (min-width: 992px) {
-  .footer-col--brand {
-    justify-content: flex-start;
-  }
-}
-
-.footer-chip {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-  border-radius: 12px;
-  padding: 10px 18px;
-}
-
-.footer-chip img {
-  display: block;
-  height: 40px;
-  width: auto;
-  max-width: 100%;
-}
-
-.footer-chip--team img {
-  height: 44px;
-}
-
-.footer-uni {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.footer-uni .footer-chip img {
-  height: 38px;
-}
-
-.footer-contact {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-@media (min-width: 992px) {
-  .footer-contact {
-    justify-content: flex-end;
-  }
-}
-
-.footer-mascot {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-  width: 64px;
-  height: 64px;
-  padding: 6px;
-  border-radius: 999px;
-  background: #fff;
-  overflow: hidden;
-}
-
-.footer-mascot img {
+.footer--story {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  min-height: 378px;
+  margin-top: 0;
 }
 
-.footer-contact-title {
-  margin: 0 0 0.25rem;
-  font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-}
-
-.footer-contact-email a {
-  font-weight: 600;
-}
-
-/* Supporters marquee */
-
-.footer-supporters {
-  margin-bottom: 3rem;
-}
-
-.footer-supporters-title {
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-}
-
-.sponsors-container {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  padding: 0.5rem 0;
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    #000 12%,
-    #000 88%,
-    transparent
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    #000 12%,
-    #000 88%,
-    transparent
-  );
-}
-
-.sponsors-track {
-  display: flex;
-  width: fit-content;
-  animation: footer-marquee 40s linear infinite;
-}
-
-.sponsor-slide {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 180px;
-  height: 96px;
-  margin-right: 1rem;
-  padding: 0.6rem;
-  background: #fff;
-  border-radius: 10px;
-}
-
-.sponsor-slide img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  opacity: 0.92;
-  transition: opacity 0.3s ease;
-}
-
-.sponsor-slide:hover img {
-  opacity: 1;
-}
-
-@keyframes footer-marquee {
-  from {
-    transform: translateX(0);
+@media (max-width: 700px) {
+  .footer {
+    --footer-arch-height: 48px;
+    min-height: 320px;
+    padding: calc(28px + var(--footer-arch-height)) 24px 28px;
+    grid-template-columns: 1fr;
+    gap: 52px;
   }
 
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-/* Legal lines */
-
-.footer-legal {
-  color: #dce8f6;
-}
-
-.footer-legal p {
-  line-height: 1.6;
-}
-
-/* Responsive */
-
-@media (max-width: 767.98px) {
-  .footer-wings {
-    width: 80%;
+  .footer__logos {
+    flex-direction: column;
   }
 
-  .footer-body {
-    padding: 2.5rem 0 1.5rem;
-    border-top-left-radius: 2.5rem;
-    border-top-right-radius: 2.5rem;
-  }
-
-  .sponsor-slide {
-    width: 140px;
-    height: 80px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .sponsors-track {
-    animation: none;
-  }
-
-  .sponsor-slide img {
-    transition: none;
+  .footer__logo-group,
+  .footer__logo-group:last-child {
+    justify-content: center;
   }
 }
