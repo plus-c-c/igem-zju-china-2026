@@ -39,11 +39,22 @@ export function Footer({ story = false }: { story?: boolean }) {
       data-name="Footer / Desktop"
     >
       <div className="footer__left" data-node-id="192:312">
-        <img
-          className="footer__team-logo"
-          src={`${uploads}/team-logo.avif`}
-          alt="ZJU-China"
-        />
+        <div className="footer__brand-row">
+          <img
+            className="footer__team-logo"
+            src={`${uploads}/team-logo.avif`}
+            alt="ZJU-China"
+          />
+          {universityLogos.map((logo) => (
+            <img
+              className="footer__uni-logo"
+              key={logo.src}
+              src={logo.src}
+              alt={logo.alt}
+              loading="lazy"
+            />
+          ))}
+        </div>
         <p className="footer__tagline" data-node-id="192:315">
           An engineered hydrogel platform for healthier joints and a better
           tomorrow.
@@ -81,19 +92,12 @@ export function Footer({ story = false }: { story?: boolean }) {
 
       <div className="footer__bottom">
         <h4 className="footer__supporters-title">WE THANK OUR SUPPORTERS:</h4>
-        <div className="footer__logos">
-          <div className="footer__logo-group" aria-label="Universities">
-            {universityLogos.map((logo) => (
-              <span className="footer__logo-chip" key={logo.src}>
+        <div className="sponsors-container">
+          <div className="sponsors-track">
+            {[...sponsorLogos, ...sponsorLogos].map((logo, index) => (
+              <div className="sponsor-slide" key={`${logo.alt}-${index}`}>
                 <img src={logo.src} alt={logo.alt} loading="lazy" />
-              </span>
-            ))}
-          </div>
-          <div className="footer__logo-group" aria-label="Sponsors">
-            {sponsorLogos.map((logo) => (
-              <span className="footer__logo-chip" key={logo.src}>
-                <img src={logo.src} alt={logo.alt} loading="lazy" />
-              </span>
+              </div>
             ))}
           </div>
         </div>
