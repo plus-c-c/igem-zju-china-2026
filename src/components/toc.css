@@ -10,7 +10,7 @@
 
 .page-article p,
 .page-article li {
-  font-size: 21px;
+  font-size: 20px;
   line-height: 1.7;
 }
 
@@ -46,10 +46,10 @@
 .page-toc {
   position: fixed;
   top: 104px;
-  left: 20px;
+  left: 80px;
   /* Controls the overall width of the table of contents. */
   width: 278px;
-  max-height: calc(100dvh - 128px);
+  max-height: calc(100dvh - 228px);
   /* Controls the inner spacing around the entire table of contents. */
   padding: 20px 12px;
   z-index: 1020;
@@ -73,7 +73,7 @@
   margin: 0 8px 16px;
   color: #223c81;
   /* Controls the font size of the "On this page" title. */
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 400;
 }
 
@@ -109,20 +109,11 @@
   font-size: 18px;
 }
 
-/* Add margin here to control the distance between adjacent second-level entries. */
-.page-toc-level-2 + .page-toc-level-2 {
-  margin-top: 0;
-}
 
-/* Add margin here to control the distance between first-level heading groups. */
-.page-toc-level-1:not(:first-child) {
-  margin-top: 0;
-}
 
 .page-toc-level-1.page-toc-section-current > a {
   border-left-color: currentColor;
   color: #365dc9;
-  font-weight: 600;
 }
 
 .page-toc-list a:hover {
@@ -133,25 +124,10 @@
   /* This overrides the normal second-level font size while an entry is active. */
   font-size: 20px;
   color: #365dc9;
-  font-weight: 600;
 }
 .page-toc-list a:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: -2px;
-}
-
-@media (min-width: 992px) {
-  /* Use Design's 10/12-column reading width on every standard content page. */
-  .page-article > .row {
-    width: 83.333333%;
-    margin-right: auto;
-    margin-left: auto;
-  }
-
-  /* Design and Experiments already include a 10/12 column internally. */
-  .page-article > .row > .col-lg-10.mx-auto {
-    width: 100%;
-  }
 }
 
 @media (min-width: 1200px) {
@@ -164,10 +140,14 @@
   }
 }
 
-@media (max-width: 1199.98px) {
+@media (max-width: 1200px) {
   .page-toc {
     display: none;
   }
+  .page-article {
+  padding-right: 48px;
+  padding-left: 48px;
+}
 }
 
 @media (prefers-reduced-motion: reduce) {

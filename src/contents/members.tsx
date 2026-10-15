@@ -76,7 +76,7 @@ export function Members() {
 
       {[
         { id: "leaders", title: "Student Leaders" },
-        { id: "students", title: "STUDENT TEAM MEMBERS" },
+        { id: "students", title: "Students" },
         { id: "pis", title: "PIs" },
         { id: "advisors", title: "Advisors" },
       ].map((group) => (

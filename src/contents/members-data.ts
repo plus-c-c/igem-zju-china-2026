@@ -124,7 +124,6 @@ export const members: Member[] = [
   {
     id: "yingqi-zhou",
     name: "Yingqi Zhou",
-    nickname: "Blanche",
     role: "Dry Lab · Wiki",
     group: "leaders",
     bio: "Hi! I'm Yingqi Zhou, a junior majoring in Computer Science and Technology. I enjoy eating hot pot, doing experiments, and chatting with friends. Once again, thank you so much for taking the time to explore the wiki that my team and I created together! Hope we'll all have a wonderful time together in Paris!",
