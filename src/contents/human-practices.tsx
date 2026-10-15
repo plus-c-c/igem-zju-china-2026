@@ -48,6 +48,7 @@ const timelineItems: TimelineItem[] = [
     date: "Month DD, 2026",
     title: "Activity title placeholder 1",
     summary: placeholderSummary,
+    details: placeholderDetails,
   },
   {
     date: "Month DD, 2026",
@@ -59,11 +60,13 @@ const timelineItems: TimelineItem[] = [
     date: "Month DD, 2026",
     title: "Activity title placeholder 3",
     summary: placeholderSummary,
+    details: placeholderDetails,
   },
   {
     date: "Month DD, 2026",
     title: "Activity title placeholder 4",
     summary: placeholderSummary,
+    details: placeholderDetails,
   },
   {
     date: "Month DD, 2026",
@@ -75,6 +78,7 @@ const timelineItems: TimelineItem[] = [
     date: "Month DD, 2026",
     title: "Activity title placeholder 6",
     summary: placeholderSummary,
+    details: placeholderDetails,
   },
 ];
 

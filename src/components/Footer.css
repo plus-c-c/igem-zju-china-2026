@@ -1,40 +1,47 @@
 .footer {
-  min-height: 278px;
+  position: relative;
   margin-top: clamp(80px, 8vw, 128px);
-  padding: 32px 40px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 40px;
-  background: #173b64;
   color: #fff;
   font-family: "Outfit", sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: -0.045em;
+}
+
+.footer--story {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 0;
+}
+
+/* Crown humps above the rounded footer body (referencing the 2025 design) */
+
+.footer-wings {
+  position: relative;
+  z-index: 0;
+  width: 60%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-wings svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.footer-body {
+  position: relative;
+  z-index: 1;
+  margin-top: -1px;
+  padding: 3.5rem 0 2rem;
+  background: linear-gradient(180deg, #4a78c9 0%, #173b64 100%);
+  border-top-left-radius: 5rem;
+  border-top-right-radius: 5rem;
 }
 
 .footer p {
   margin: 0;
-}
-
-.footer__left {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.footer__brand {
-  color: #173b64;
-  font-size: 20px;
-  letter-spacing: 0.1em;
-}
-
-.footer__legal {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  color: #dce8f6;
 }
 
 .footer a {
@@ -49,25 +56,207 @@
   text-decoration: underline;
 }
 
-.footer--story {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  min-height: 278px;
-  margin-top: 0;
+/* Top row: team logo / university / contact */
+
+.footer-top {
+  margin-bottom: 3rem;
 }
 
-@media (max-width: 700px) {
-  .footer {
-    min-height: 320px;
-    padding: 28px 24px;
-    grid-template-columns: 1fr;
-    gap: 52px;
+.footer-col--brand {
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 992px) {
+  .footer-col--brand {
+    justify-content: flex-start;
+  }
+}
+
+.footer-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 18px;
+}
+
+.footer-chip img {
+  display: block;
+  height: 40px;
+  width: auto;
+  max-width: 100%;
+}
+
+.footer-chip--team img {
+  height: 44px;
+}
+
+.footer-uni {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-uni .footer-chip img {
+  height: 38px;
+}
+
+.footer-contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+@media (min-width: 992px) {
+  .footer-contact {
+    justify-content: flex-end;
+  }
+}
+
+.footer-mascot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+  padding: 6px;
+  border-radius: 999px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.footer-mascot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.footer-contact-title {
+  margin: 0 0 0.25rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.footer-contact-email a {
+  font-weight: 600;
+}
+
+/* Supporters marquee */
+
+.footer-supporters {
+  margin-bottom: 3rem;
+}
+
+.footer-supporters-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.sponsors-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 0.5rem 0;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+}
+
+.sponsors-track {
+  display: flex;
+  width: fit-content;
+  animation: footer-marquee 40s linear infinite;
+}
+
+.sponsor-slide {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 96px;
+  margin-right: 1rem;
+  padding: 0.6rem;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.sponsor-slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  opacity: 0.92;
+  transition: opacity 0.3s ease;
+}
+
+.sponsor-slide:hover img {
+  opacity: 1;
+}
+
+@keyframes footer-marquee {
+  from {
+    transform: translateX(0);
   }
 
-  .footer__left {
-    gap: 54px;
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Legal lines */
+
+.footer-legal {
+  color: #dce8f6;
+}
+
+.footer-legal p {
+  line-height: 1.6;
+}
+
+/* Responsive */
+
+@media (max-width: 767.98px) {
+  .footer-wings {
+    width: 80%;
+  }
+
+  .footer-body {
+    padding: 2.5rem 0 1.5rem;
+    border-top-left-radius: 2.5rem;
+    border-top-right-radius: 2.5rem;
+  }
+
+  .sponsor-slide {
+    width: 140px;
+    height: 80px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sponsors-track {
+    animation: none;
+  }
+
+  .sponsor-slide img {
+    transition: none;
   }
 }
