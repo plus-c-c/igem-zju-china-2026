@@ -69,10 +69,10 @@ export function Members() {
       </figure>
 
       {[
-        { id: "leaders", title: "Meet the Student Leaders" },
+        { id: "leaders", title: "Student Leaders" },
         { id: "students", title: "STUDENT TEAM MEMBERS" },
-        { id: "pis", title: "Meet the PIs" },
-        { id: "advisors", title: "Meet the Advisors" },
+        { id: "pis", title: "PIs" },
+        { id: "advisors", title: "Advisors" },
       ].map((group) => (
         <section
           className="members-section"
