@@ -58,8 +58,8 @@
 .members-card:is(:hover, :focus-visible) {
   transform: translateY(-5px);
   box-shadow:
-    7px 7px 0 #c092d0,
-    14px 14px 0 #8bdfd6;
+    7px 7px 0 #4475cb,
+    14px 14px 0 #c3d9f1;
 }
 
 .members-card:focus-visible {
@@ -151,7 +151,7 @@
   margin: 0;
   padding: 24px;
   color: #fff;
-  background: #6a4c9c;
+  background: #365dc9;
   font-size: 1rem;
   line-height: 1.6;
   text-align: center;
