@@ -4,6 +4,8 @@ import "./members.css";
 
 function MemberCard({ member, index }: { member: Member; index: number }) {
   const [imageFailed, setImageFailed] = useState(false);
+  // A small inward shift: 20% of the center-to-golden-line distance.
+  const imageShiftX = index % 2 ? -2.36 : 2.36;
   const initials = member.name
     .split(" ")
     .map((part) => part[0])
@@ -20,7 +22,11 @@ function MemberCard({ member, index }: { member: Member; index: number }) {
         {member.imageUrl && !imageFailed ? (
           <img
             src={member.imageUrl}
-            style={{ objectPosition: member.imagePosition }}
+            style={{
+              objectPosition: member.imagePosition,
+              transform: `translateX(${imageShiftX}%) scale(1.06)`,
+              transformOrigin: "50% 15%",
+            }}
             alt={`Portrait of ${member.name}`}
             width={320}
             height={320}

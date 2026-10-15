@@ -189,7 +189,7 @@ export const members: Member[] = [
     group: "advisors",
     bio: "Hi! I'm Boyue Zhang, a senior student majoring in biophysics. I really love exploring and discovering new things. I hope you will like our project and that we can create something together that changes the world!",
     imageUrl:
-      "https://static.igem.wiki/teams/6102/wiki/images/member/boyuezhang.avif",
-    imagePosition: "50% 44%",
+      "https://static.igem.wiki/teams/6102/wiki/images/member/boyuezhang-2026.avif",
+    imagePosition: "100% 50%",
   },
 ];
