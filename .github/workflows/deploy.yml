@@ -49,6 +49,9 @@ jobs:
           # Automatically set the base path to the repository name for correct routing on GitHub Pages
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
 
+      - name: Create SPA fallback (404.html)
+        run: cp dist/index.html dist/404.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
