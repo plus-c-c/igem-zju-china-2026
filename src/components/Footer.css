@@ -41,6 +41,9 @@
   width: auto;
   height: 52px;
   margin-bottom: 16px;
+  /* Flex columns stretch children by default; keep the logo at its own
+     aspect ratio instead of filling the full column width. */
+  align-self: flex-start;
 }
 
 .footer__right {
