@@ -1,48 +1,100 @@
-import { Inspirations, InspirationLink } from "../components/Inspirations";
+import { useState } from "react";
+import { members, type Member } from "./members-data";
+import "./members.css";
 
-export function Members() {
-  const links: InspirationLink[] = [
-    { year: 2024, teamName: "Waseda-Tokyo", pageName: "members" },
-    { year: 2024, teamName: "Aachen", pageName: "team" },
-    { year: 2024, teamName: "Patras", pageName: "team" },
-    { year: 2024, teamName: "DTU-Denmark", pageName: "team" },
-    { year: 2024, teamName: "Fudan", pageName: "team" },
-  ];
+function MemberCard({ member, index }: { member: Member; index: number }) {
+  const [imageFailed, setImageFailed] = useState(false);
+  // A small inward shift: 20% of the center-to-golden-line distance.
+  const imageShiftX = index % 2 ? -2.36 : 2.36;
+  const initials = member.name
+    .split(" ")
+    .map((part) => part[0])
+    .join("");
 
   return (
-    <>
-      <div className="row">
-        <div className="col-8">
-          <h2>What Should this Page Contain?</h2>
-          <hr />
-          <ul>
-            <li>
-              Include pictures of your teammates, don't forget instructors and
-              advisors!
-            </li>
-            <li>
-              You can add a small biography or a few words from each team
-              member, to tell us what you like, and what motivated you to
-              participate in iGEM.
-            </li>
-            <li>
-              Present your lab environment, your institution, and perhaps
-              glimpses of your city or region.
-            </li>
-            <li>
-              Showcase the expertise and guidance of your instructors and
-              advisors.
-            </li>
-          </ul>
-          <div className="bd-callout bd-callout-info">
-            <strong>Important:</strong> Remember that your wiki will be archived
-            and remain publicly accessible. Be mindful of the personal
-            information you share. Avoid posting sensitive details. Be sure
-            everyone shown in pictures agree to them being shown.
+    <article
+      className={`members-card${index % 2 ? " members-card--reversed" : ""}`}
+      aria-labelledby={member.id}
+      aria-describedby={`${member.id}-bio`}
+      tabIndex={0}
+    >
+      <div className="members-card__portrait">
+        {member.imageUrl && !imageFailed ? (
+          <img
+            src={member.imageUrl}
+            style={{
+              objectPosition: member.imagePosition,
+              transform: `translateX(${imageShiftX}%) scale(1.06)`,
+              transformOrigin: "50% 15%",
+            }}
+            alt={`Portrait of ${member.name}`}
+            width={320}
+            height={320}
+            loading="lazy"
+            decoding="async"
+            onError={() => setImageFailed(true)}
+          />
+        ) : (
+          <div
+            className="members-card__initials"
+            role="img"
+            aria-label={`Initials for ${member.name}`}
+          >
+            {initials}
           </div>
-        </div>
-        <Inspirations inspirationLinkList={links} />
+        )}
       </div>
-    </>
+      <div className="members-card__details">
+        <div className="members-card__summary">
+          <h3 id={member.id}>
+            {member.name}
+            {member.nickname ? ` (${member.nickname})` : ""}
+          </h3>
+          <p className="members-card__role">{member.role}</p>
+        </div>
+        <p className="members-card__bio" id={`${member.id}-bio`}>
+          {member.bio}
+        </p>
+      </div>
+    </article>
+  );
+}
+
+export function Members() {
+  return (
+    <div className="members-page">
+      <figure className="members-photo">
+        <img
+          src="https://static.igem.wiki/teams/6102/wiki/images/member/team.avif"
+          alt="ZJU-China 2026 team gathered together outdoors"
+          width={3000}
+          height={2000}
+          decoding="async"
+        />
+        <figcaption>ZJU-China · iGEM 2026</figcaption>
+      </figure>
+
+      {[
+        { id: "leaders", title: "Student Leaders" },
+        { id: "students", title: "Students" },
+        { id: "pis", title: "PIs" },
+        { id: "advisors", title: "Advisors" },
+      ].map((group) => (
+        <section
+          className="members-section"
+          key={group.id}
+          aria-labelledby={`members-${group.id}`}
+        >
+          <h2 id={`members-${group.id}`}>{group.title}</h2>
+          <div className="members-list">
+            {members
+              .filter((member) => member.group === group.id)
+              .map((member, index) => (
+                <MemberCard key={member.id} member={member} index={index} />
+              ))}
+          </div>
+        </section>
+      ))}
+    </div>
   );
 }

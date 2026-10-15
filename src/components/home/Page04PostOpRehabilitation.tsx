@@ -1,12 +1,27 @@
 import { useReducedMotion } from "motion/react";
 
-const assetPathPrefix = `${import.meta.env.BASE_URL}images/home`;
-const imgRehabilitationFrame1 = `${assetPathPrefix}/person-3-frame-1.png`;
-const imgRehabilitationFrame2 = `${assetPathPrefix}/person-3-frame-2.png`;
-const imgRehabilitationFrame3 = `${assetPathPrefix}/person-3-frame-3.png`;
-const imgPage04PinkHalo = `${assetPathPrefix}/cf360.svg`;
-const imgPage04YellowHalo = `${assetPathPrefix}/c4d0f.svg`;
-const imgPage04YellowDot = `${assetPathPrefix}/0d3a1.svg`;
+const imgRehabilitationFrame1 = `https://static.igem.wiki/teams/6102/wiki/images/home/person-3-frame-1.avif`;
+const imgRehabilitationFrame2 = `https://static.igem.wiki/teams/6102/wiki/images/home/person-3-frame-2.avif`;
+const imgRehabilitationFrame3 = `https://static.igem.wiki/teams/6102/wiki/images/home/person-3-frame-3.avif`;
+const imgPage04PinkHalo = `https://static.igem.wiki/teams/6102/wiki/images/home/cf360.svg`;
+const imgPage04YellowHalo = `https://static.igem.wiki/teams/6102/wiki/images/home/c4d0f.svg`;
+const imgPage04YellowDot = `https://static.igem.wiki/teams/6102/wiki/images/home/0d3a1.svg`;
+
+const speedUpFrameBlend = (progress: number) => {
+  const clamped = Math.max(0, Math.min(2, progress));
+  if (clamped >= 2) return 2;
+
+  const frameIndex = Math.floor(clamped);
+  const localProgress = clamped - frameIndex;
+  const blendProgress = Math.max(
+    0,
+    Math.min(1, (localProgress - 0.46) / 0.08),
+  );
+  const easedBlend =
+    blendProgress * blendProgress * (3 - 2 * blendProgress);
+
+  return frameIndex + easedBlend;
+};
 
 export default function Page04PostOpRehabilitation({
   frameProgress,
@@ -14,7 +29,9 @@ export default function Page04PostOpRehabilitation({
   frameProgress: number;
 }) {
   const reduced = useReducedMotion();
-  const frame = reduced ? Math.round(frameProgress) : frameProgress;
+  const frame = reduced
+    ? Math.round(frameProgress)
+    : speedUpFrameBlend(frameProgress);
   return (
     <div
       className="home-layer-26"
@@ -59,6 +76,7 @@ export default function Page04PostOpRehabilitation({
       >
         <img
           alt="A young patient progressing through post-operative rehabilitation"
+          data-node-id="834:5"
           loading="lazy"
           decoding="async"
           className="home-layer-31 story-frame-image rehab-frame rehab-frame--1"
@@ -68,6 +86,7 @@ export default function Page04PostOpRehabilitation({
         <img
           alt=""
           aria-hidden="true"
+          data-node-id="834:7"
           loading="lazy"
           decoding="async"
           className="home-layer-31 story-frame-image rehab-frame rehab-frame--2"
@@ -77,6 +96,7 @@ export default function Page04PostOpRehabilitation({
         <img
           alt=""
           aria-hidden="true"
+          data-node-id="834:9"
           loading="lazy"
           decoding="async"
           className="home-layer-31 story-frame-image rehab-frame rehab-frame--3"

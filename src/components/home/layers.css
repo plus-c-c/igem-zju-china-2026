@@ -1,89 +1,13 @@
 /* Figma illustration layers: coordinates are local to each responsive scene. */
-.home-layer-1 {
-  align-content: stretch;
-  display: flex;
-  flex-direction: column;
-  gap: 100px;
-  align-items: center;
-  overflow: hidden;
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-top: 100px;
-  padding-bottom: 100px;
-  position: relative;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-  width: 100%;
-  height: 100%;
-}
-.home-layer-2 {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-}
-.home-layer-3 {
-  position: absolute;
-  inset: 0;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 222, 112, 0.57),
-    rgba(252, 192, 6, 0.57)
-  );
-}
-.home-layer-4 {
-  position: absolute;
-  opacity: 0.5;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-}
-.home-layer-5 {
-  overflow-wrap: break-word;
-  font-family: "Rubik Maps", sans-serif;
-  line-height: 267.648px;
-  font-style: normal;
-  position: relative;
-  flex-shrink: 0;
-  color: #0341c8;
-  font-size: 250px;
-  white-space: nowrap;
-}
-.home-layer-6 {
-  position: absolute;
-  display: flex;
-  height: 391.224px;
-  align-items: center;
-  justify-content: center;
-  left: -42px;
-  top: calc(40% + 11.4px);
-  width: 456px;
-}
-.home-layer-7 {
-  flex: none;
-  rotate: 0.86deg;
-}
-.home-layer-8 {
-  height: 384.521px;
-  position: relative;
-  width: 450.29px;
-}
 .home-layer-9 {
   position: absolute;
   inset: 0;
   max-width: none;
   object-position: bottom;
+  object-fit: contain;
   pointer-events: none;
   width: 100%;
   height: 100%;
-}
-.home-layer-10 {
-  height: 242.435px;
-  position: relative;
-  flex-shrink: 0;
-  width: 643.659px;
 }
 .home-layer-11 {
   position: absolute;
@@ -204,7 +128,7 @@
 }
 .home-layer-23 {
   position: absolute;
-  height: 485px;
+  height: 487px;
   left: calc(50% + 2px);
   top: 142px;
   width: 580px;
@@ -445,7 +369,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, #fffcf1, #ffde70);
+  background: linear-gradient(180deg, #f4f9ff 0%, #fffcf1 15%, #ffde70 100%);
 }
 .home-layer-47 {
   position: absolute;
@@ -479,7 +403,8 @@
   translate: -50% 0;
   overflow-wrap: break-word;
   position: absolute;
-  font-family: "Outfit", sans-serif;
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 700;
   height: 300px;
   line-height: normal;
   left: 640px;
@@ -528,10 +453,10 @@
 }
 .home-layer-57 {
   position: absolute;
-  height: 627px;
-  left: 152px;
-  top: 450px;
-  width: 975px;
+  height: 388px;
+  left: 420px;
+  top: 365px;
+  width: 440px;
 }
 .home-layer-58 {
   position: absolute;
@@ -544,18 +469,83 @@
 }
 .home-layer-59 {
   position: absolute;
-  height: 393px;
-  left: calc(33.33% + 33.33px);
-  top: 248px;
-  width: 360px;
+  height: 213px;
+  left: 530px;
+  top: 275px;
+  transform-origin: center bottom;
+  width: 220px;
 }
 .home-layer-60 {
   position: absolute;
-  height: 252px;
-  left: calc(33.33% + 108.33px);
+  height: 397px;
+  left: 50%;
   opacity: 0;
-  top: 286px;
-  width: 210px;
+  top: 0;
+  width: 570px;
+  will-change: opacity, transform;
+}
+.home-flying-bird-rotation {
+  position: absolute;
+  inset: 0;
+  transform-origin: 25% 38%;
+  will-change: transform;
+}
+.home-flying-bird-frame {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  pointer-events: none;
+}
+.home-flying-bird-frame--1 {
+  animation: home-bird-frame-1 360ms steps(1, end) infinite;
+}
+.home-flying-bird-frame--2 {
+  animation: home-bird-frame-2 360ms steps(1, end) infinite;
+}
+.home-resting-bird-image {
+  position: absolute;
+  left: -57px;
+  top: -86px;
+  display: block;
+  width: 570px;
+  height: 397px;
+  max-width: none;
+  object-fit: contain;
+  pointer-events: none;
+}
+@keyframes home-bird-frame-1 {
+  0%,
+  49.999% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes home-bird-frame-2 {
+  0%,
+  49.999% {
+    opacity: 0;
+  }
+  50%,
+  100% {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-flying-bird-frame--1 {
+    animation: none;
+    opacity: 1;
+  }
+  .home-flying-bird-frame--2 {
+    animation: none;
+    opacity: 0;
+  }
 }
 .home-layer-61 {
   position: absolute;

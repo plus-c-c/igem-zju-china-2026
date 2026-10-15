@@ -1,6 +1,5 @@
 import { motion, useReducedMotion } from "motion/react";
 import { useStory } from "./StoryContext";
-const asset = `${import.meta.env.BASE_URL}images/home/`;
 export default function GlobalBurden({
   stage,
   progress,
@@ -54,13 +53,13 @@ export default function GlobalBurden({
       >
         <img
           className="world-map"
-          src={`${asset}world-map.svg`}
+          src={`https://static.igem.wiki/teams/6102/wiki/images/home/world-map.svg`}
           alt="World map showing osteoarthritis prevalence"
           loading="lazy"
         />
         <div className="map-legend">
           <strong>PREVALENCE RATE · PER 100,000</strong>
-          <img src={`${asset}490d7.svg`} alt="" />
+          <img src={`https://static.igem.wiki/teams/6102/wiki/images/home/490d7.svg`} alt="" />
           <span>2,579</span>
           <span>19,222</span>
         </div>
@@ -74,14 +73,14 @@ export default function GlobalBurden({
       >
         <img
           className="burden-person-frame"
-          src={`${asset}person-1-frame-1.png`}
+          src={`https://static.igem.wiki/teams/6102/wiki/images/home/person-1-frame-1.avif`}
           alt="A person experiencing knee pain while climbing stairs"
           loading="lazy"
           style={{ opacity: 1 - painFrameProgress }}
         />
         <img
           className="burden-person-frame"
-          src={`${asset}person-1-frame-2.png`}
+          src={`https://static.igem.wiki/teams/6102/wiki/images/home/person-1-frame-2.avif`}
           alt=""
           aria-hidden="true"
           loading="lazy"

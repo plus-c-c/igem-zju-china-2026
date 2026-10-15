@@ -16,7 +16,7 @@ export function LoadingScreen({ visible }: LoadingScreenProps) {
       <div className="loading-screen__content">
         <div className="loading-screen__bird" aria-hidden="true">
           <img
-            src={`${import.meta.env.BASE_URL}images/loading-bird.png`}
+            src={`https://static.igem.wiki/teams/6102/wiki/images/loading-bird.avif`}
             alt=""
             width="2360"
             height="1640"

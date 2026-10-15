@@ -5,7 +5,6 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { getPathMapping, stringToSlug } from "../../utils";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { Navbar } from "../../components/Navbar";
-import { Header } from "../../components/Header";
 import { NotFound } from "../../components/NotFound";
 import { Footer } from "../../components/Footer";
 import { Toc } from "../../components/toc";
@@ -18,6 +17,10 @@ const MAXIMUM_LOADING_TIME = 8000;
 const App = () => {
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
+  const [homeIntroReady, setHomeIntroReady] = useState(false);
+  const [isMobileNavigation, setIsMobileNavigation] = useState(
+    () => window.matchMedia("(max-width: 991.98px)").matches,
+  );
   const pathMapping = getPathMapping();
   const currentPath =
     location.pathname
@@ -27,9 +30,31 @@ const App = () => {
   // Set Page Title
   const currentPage =
     currentPath in pathMapping ? pathMapping[currentPath] : undefined;
+  const isNotFound = !currentPage;
+  const isHome = currentPath === "/";
   const navigationTitle = currentPage
     ? currentPage.navigationTitle
     : "Not Found";
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 991.98px)");
+    const updateMobileNavigation = () =>
+      setIsMobileNavigation(mediaQuery.matches);
+
+    updateMobileNavigation();
+    mediaQuery.addEventListener("change", updateMobileNavigation);
+    return () =>
+      mediaQuery.removeEventListener("change", updateMobileNavigation);
+  }, []);
+
+  useEffect(() => {
+    const handleHomeIntroReady = () => setHomeIntroReady(true);
+    window.addEventListener("home-intro-ready", handleHomeIntroReady);
+
+    return () => {
+      window.removeEventListener("home-intro-ready", handleHomeIntroReady);
+    };
+  }, []);
 
   useEffect(() => {
     document.title = `${navigationTitle || ""} | ${import.meta.env.VITE_TEAM_NAME} - iGEM ${import.meta.env.VITE_TEAM_YEAR}`;
@@ -49,6 +74,9 @@ const App = () => {
     let cancelled = false;
     const startedAt = performance.now();
     setIsLoading(true);
+    if (currentPath === "/") {
+      setHomeIntroReady(false);
+    }
 
     const waitForPageAssets = async () => {
       await new Promise<void>((resolve) =>
@@ -88,18 +116,28 @@ const App = () => {
     return () => {
       cancelled = true;
     };
-  }, [location.key]);
+  }, [currentPath, location.key]);
 
   return (
     <div className="app">
       <LoadingScreen visible={isLoading} />
 
       {/* Navigation */}
-      <Navbar />
+      {(!isHome || homeIntroReady || isMobileNavigation) && (
+        <Navbar
+          introEntrance={isHome && homeIntroReady && !isMobileNavigation}
+        />
+      )}
 
       {/* Header and PageContent */}
       <main
-        className={`content ${currentPath === "/" ? "content-home" : "content-page"}`}
+        className={`content ${
+          currentPath === "/"
+            ? "content-home"
+            : isNotFound
+              ? "content-not-found"
+              : "content-page"
+        }`}
       >
         <Routes>
           {Object.entries(pathMapping).map(
@@ -110,7 +148,7 @@ const App = () => {
                 element={
                   path === "/" ? (
                     <div className="home-container">
-                      <Component />
+                      {!isLoading && <Component />}
                     </div>
                   ) : (
                     <Toc key={path} title={title || ""}>
@@ -121,23 +159,15 @@ const App = () => {
               />
             ),
           )}
-          <Route
-            path="*"
-            element={
-              <>
-                <Header title="Not Found" />
-                <NotFound />
-              </>
-            }
-          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 
-      <BackToTop />
+      {!isNotFound && <BackToTop />}
 
       {/* Footer */}
       {/* MUST mention license AND have a link to team wiki's repository on gitlab.igem.org */}
-      {currentPath !== "/" && <Footer />}
+      {currentPath !== "/" && !isNotFound && <Footer />}
     </div>
   );
 };

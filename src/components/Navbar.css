@@ -1,35 +1,39 @@
 .nest-navbar {
   --bs-navbar-padding-y: 0;
-  background: linear-gradient(90deg, #a3c4eb 0%, #0341c8 100%);
+  background: linear-gradient(90deg, #a3c4eb 0%, #4c93e0 100%);
   padding: 20px 40px;
   min-height: 88px;
   font-family: "Outfit", sans-serif;
   font-weight: 500;
   z-index: 1030;
-  border-bottom: 1px solid #ffffff30;
   box-shadow: 0 3px 16px #173c6414;
   transform: translateY(0);
-  transition: transform 260ms ease;
+  transition:
+    transform 300ms ease,
+    visibility 300ms;
   will-change: transform;
 }
 
 .nest-navbar-hidden {
   transform: translateY(calc(-100% - 1px));
-}
-
-.navbar-reveal-zone {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 24px;
-  z-index: 1031;
+  visibility: hidden;
   pointer-events: none;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .navbar-reveal-zone-active {
-    pointer-events: auto;
+.nest-navbar-intro-enter {
+  animation: nest-navbar-intro-enter 1250ms cubic-bezier(0.22, 1, 0.36, 1)
+    2150ms backwards;
+}
+
+@keyframes nest-navbar-intro-enter {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-100% - 1px));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -38,20 +42,24 @@
 }
 
 .nest-navbar .brand-link {
+  display: inline-flex;
+  align-items: center;
   color: #0341c8;
-  font-family: "Rubik Maps", sans-serif;
-  font-size: 25px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 2px;
   padding: 0;
   margin: 0;
   text-decoration: none;
 }
 
+.nest-navbar .brand-team-logo {
+  display: block;
+  width: 98px;
+  height: 41px;
+  object-fit: contain;
+}
+
 .nest-navbar .brand-link:hover,
 .nest-navbar .brand-link:focus {
-  color: #0341c8;
+  color: #4c93e0;
 }
 
 .nest-navbar .navbar-nav {
@@ -111,7 +119,7 @@
 .nest-navbar .dropdown-item {
   border-radius: 4px;
   padding: 8px 12px;
-  color: #0341c8;
+  color: #4c93e0;
   white-space: normal;
 }
 
@@ -119,7 +127,7 @@
 .nest-navbar .dropdown-item:focus,
 .nest-navbar .dropdown-item.active {
   background: #e7f0fc;
-  color: #0341c8;
+  color: #4c93e0;
   font-weight: 400;
   font-size: 17px;
 }
@@ -148,6 +156,10 @@
 }
 
 @media (max-width: 991.98px) {
+  .nest-navbar-intro-enter {
+    animation: none;
+  }
+
   .nest-navbar {
     padding: 20px 24px;
   }
@@ -167,10 +179,19 @@
   .nest-navbar .dropdown-menu {
     width: 100%;
   }
+
+  .nest-navbar .brand-team-logo {
+    width: 86px;
+    height: 36px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .nest-navbar {
     transition: none;
+  }
+
+  .nest-navbar-intro-enter {
+    animation: none;
   }
 }

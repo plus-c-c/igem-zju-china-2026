@@ -44,7 +44,7 @@ export function BackToTop() {
       onAnimationEnd={() => setIsPopping(false)}
     >
       <img
-        src={`${import.meta.env.BASE_URL}images/navigation/back-to-top-button.png`}
+        src={`https://static.igem.wiki/teams/6102/wiki/images/navigation/back-to-top-button.avif`}
         alt=""
         width="1151"
         height="1619"

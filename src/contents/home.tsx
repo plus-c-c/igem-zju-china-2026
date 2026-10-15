@@ -5,17 +5,26 @@ import {
   type ReactNode,
   type CSSProperties,
 } from "react";
-import HeroSection from "../components/home/HeroSection";
+import { HomeIntro } from "../components/home/HomeIntro";
 import GlobalBurden from "../components/home/GlobalBurden";
 import Page03SportsTrauma from "../components/home/Page03SportsTrauma";
 import Page04PostOpRehabilitation from "../components/home/Page04PostOpRehabilitation";
 import Page05BirdReturnsToNest from "../components/home/Page05BirdReturnsToNest";
+import {
+  HydrogelExplanation,
+  MaterialPipelineStory,
+  MaterialLimitations,
+} from "../components/home/Page06MaterialStory";
 import { Footer } from "../components/Footer";
 import "../components/home/layers.css";
 import "./home.css";
 
 import { StoryContext } from "../components/home/StoryContext";
-import { useStoryNavigation } from "../components/home/useStoryNavigation";
+import {
+  STORY_STOPS,
+  useStoryNavigation,
+} from "../components/home/useStoryNavigation";
+import "../components/home/material-story.css";
 
 function Scene({
   children,
@@ -47,11 +56,11 @@ function Scene({
   return (
     <section
       id={`home-${index + 1}`}
-      className={`home-scene${index === 0 ? " home-hero-scene" : ""}${footer ? " home-footer-scene" : ""}`}
+      className={`home-scene${footer ? " home-footer-scene" : ""}`}
       aria-label={name}
       style={style}
       aria-hidden={!active}
-      {...(!active ? { inert: "" } : {})}
+      inert={!active}
     >
       <StoryContext.Provider
         value={{
@@ -80,6 +89,7 @@ export function Home() {
     birdStage,
     birdLandingProgress,
     next,
+    nextScene,
     scenePosition,
     crossfade,
     sportsText,
@@ -88,7 +98,10 @@ export function Home() {
     rehabText,
     rehabArt,
     rehabFrame,
+    hydrogelInjection,
+    cardTransition,
     nestTitle,
+    pipelineProgress,
   } = useStoryNavigation();
   const viewport = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ width: 1280, height: 720 });
@@ -112,24 +125,8 @@ export function Home() {
   }, []);
   const scenes = [
     {
-      name: "NEST",
-      content: (
-        <>
-          <HeroSection />
-          <button
-            className="home-scroll-cue"
-            onClick={next}
-            aria-label="Explore the NEST story"
-          >
-            <img
-              src={`${import.meta.env.BASE_URL}images/home/chevrons.svg`}
-              width="26.4167"
-              height="29"
-              alt=""
-            />
-          </button>
-        </>
-      ),
+      name: "NEST introduction",
+      content: <HomeIntro onEnter={nextScene} />,
     },
     {
       name: "Global burden",
@@ -149,7 +146,13 @@ export function Home() {
       name: "Post-operative rehabilitation",
       content: <Page04PostOpRehabilitation frameProgress={rehabFrame} />,
     },
+    { name: "No single solution fits all", content: <HydrogelExplanation /> },
+    { name: "Material limitations", content: <MaterialLimitations /> },
     { name: "Return to NEST", content: <Page05BirdReturnsToNest /> },
+    {
+      name: "NEST material pipeline",
+      content: <MaterialPipelineStory progress={pipelineProgress} />,
+    },
     { name: "NEST footer", content: <Footer story /> },
   ];
   const style = {
@@ -161,7 +164,7 @@ export function Home() {
     <div
       className="home-scroll-space"
       style={{
-        height: 18 * size.height,
+        height: STORY_STOPS.length * size.height,
       }}
     >
       <div
@@ -198,7 +201,25 @@ export function Home() {
                         "--intro-art": index === 2 ? sportsArt : rehabArt,
                       }
                     : {}),
-                  ...(index === 4 ? { "--nest-title": nestTitle } : {}),
+                  ...(index === 4
+                    ? {
+                        "--hydrogel-injection-offset": `${hydrogelInjection * 108}px`,
+                      }
+                    : {}),
+                  ...(index === 5
+                    ? {
+                        "--cards-yellow-y": `${cardTransition.yellowExit * -760}px`,
+                        "--cards-blue-y": `${cardTransition.yellowExit * -760}px`,
+                        "--limitations-opacity": 1 - cardTransition.yellowExit,
+                        "--limitations-title-y": `${cardTransition.yellowExit * -42}px`,
+                        "--results-text-opacity":
+                          cardTransition.resultTextEntry,
+                        "--results-text-y": `${(1 - cardTransition.resultTextEntry) * 24}px`,
+                        "--results-entry-y": `${(1 - cardTransition.resultEntry) * 34}px`,
+                        "--results-opacity": cardTransition.resultEntry,
+                      }
+                    : {}),
+                  ...(index === 6 ? { "--nest-title": nestTitle } : {}),
                 } as CSSProperties
               }
               active={page === index}
@@ -207,8 +228,8 @@ export function Home() {
               birdStage={birdStage}
               birdLandingProgress={birdLandingProgress}
               next={next}
-              pipelineStep={index >= 5 && index <= 9 ? index - 5 : -1}
-              pipelineProgress={Math.max(0, Math.min(4, scenePosition - 5))}
+              pipelineStep={index === 7 ? Math.round(pipelineProgress) : -1}
+              pipelineProgress={pipelineProgress}
             >
               {scene.content}
             </Scene>

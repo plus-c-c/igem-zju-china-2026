@@ -133,10 +133,7 @@ export function Toc({
 
   return (
     <>
-      <div
-        ref={headerRef}
-        className={headings.length > 0 ? "page-header-with-toc" : ""}
-      >
+      <div ref={headerRef}>
         <Header title={title} />
       </div>
       <div

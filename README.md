@@ -1,4 +1,4 @@
-# Team ZJU-China 2026 WP Wiki
+# Team ZJU-China 2026 Wiki
 
 This repository uses `TypeScript` and `React` to manage the wikis.
 
@@ -7,16 +7,23 @@ This repository uses `TypeScript` and `React` to manage the wikis.
 This repository **MUST** contain all coding assets to generate your team's wiki
 (HTML, CSS, JavaScript, TypeScript, Python, etc).
 
-Please be aware that all changes should be submitted before the deadline.
+Images, photos, icons and fonts **MUST** be stored on `static.igem.wiki` using
+[the uploads tool](https://teams.igem.org/go/deliverables/wiki/uploads), and Videos **must** be embedded
+from [iGEM Video Universe](https://video.igem.org); see [the Video & Audio page](https://teams.igem.org/go/deliverables/wiki/videos-and-audios) for guidance on adding video and audio.
 
-Please fork this repository and deliver a complete wiki. The final evaluation will be based on the latest deployment submitted before **February 22, 24:00 (CST) (UTC+8)**. This will directly affect the team's deliverables.
-
-Images, photos, icons, videos and fonts can be stored in the repository or an external link, as this is a trial project. However, in the formal competition, images, photos, icons and fonts **MUST** be stored on `static.igem.wiki` using
-[tools.igem.org](https://tools.igem.org), and Videos **must** be embedded
-from [iGEM Video Universe](https://video.igem.org).
+**Everything your wiki loads (CSS, JavaScript, fonts, images) must be served from
+iGEM infrastructure.** Do not link to external or third-party CDNs (for example
+Google Fonts, jsDelivr, cdnjs) — upload the files you need via
+[the uploads tool](https://teams.igem.org/go/deliverables/wiki/uploads) and reference them from `static.igem.wiki`
+instead.
 
 For up-to-date requirements, resources, help and guidance, visit
-[competition.igem.org/deliverables/team-wiki](https://competition.igem.org/deliverables/team-wiki).
+[teams.igem.org/go/deliverables/wiki](https://teams.igem.org/go/deliverables/wiki).
+
+> **Using an AI assistant (e.g. Claude Code)?** Please read
+> [.claude/RESPONSIBLE_AI_USE.md](.claude/RESPONSIBLE_AI_USE.md) first. You remain
+> fully responsible for everything you publish: never fabricate scientific
+> results, data, or citations.
 
 ## Getting Started
 
@@ -25,8 +32,8 @@ for web development.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/AnyaReese/iGEM26-WP-Tutorial-React.git
-   cd iGEM26-WP-Tutorial-React
+   git clone https://gitlab.igem.org/2026/zju-china
+   cd zju-china
    ```
 2. Install the dependencies:
 
@@ -36,9 +43,8 @@ for web development.
 
    ### Important:
 
-   Ensure you are using Node.js version `>=22.12.0` to avoid compatibility issues (a dependency of
-   KaTeX requires Node 22.12 or newer). Node `v22` (LTS) is recommended for this project. You can
-   check your Node version by running `node -v` in your terminal.
+   Ensure you are using Node.js version `>=20.19.0` (Node 22 LTS recommended) to avoid compatibility issues.
+   You can check your Node version by running `node -v` in your terminal.
 
 3. Start the development server:
    ```bash
@@ -61,8 +67,6 @@ Below is the structure of important files and directories in this project:
     ├── README.md            -> The file you are currently reading
     ├── index.html           -> Single HTML file for the wiki
     ├── package.json         -> Manages project metadata and dependencies
-    ├── public/
-    │   └── images/          -> Store static images and assets here
     ├── src/
     │   ├── components/      -> Pre-built components(like Navbar, Footer, etc.)
     │   ├── containers/
