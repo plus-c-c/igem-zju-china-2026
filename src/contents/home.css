@@ -138,8 +138,23 @@ body.home-story-open .app {
   overflow: visible;
   background: #f4f9ff;
 }
-.story-viewport :is(#home-6, #home-7) {
-  background: #f4f9ff;
+.story-viewport #home-6 {
+  background-color: #ddecff;
+  background-image: var(--hydrogel-background-image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.story-viewport #home-7 {
+  background: radial-gradient(
+    circle at 50% 48%,
+    #eef8ff 0%,
+    #cfe9ff 45%,
+    #a9d7ff 100%
+  );
+}
+.story-viewport #home-7 .limitations-page {
+  background: transparent;
 }
 .story-viewport .home-scene-canvas {
   position: absolute;
