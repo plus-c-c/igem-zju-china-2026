@@ -13,11 +13,9 @@ import {
   SportsTraumaScene,
 } from "../components/home/OpeningStory";
 import Page05BirdReturnsToNest from "../components/home/Page05BirdReturnsToNest";
-import {
-  HydrogelExplanation,
-  MaterialPipelineStory,
-  MaterialLimitations,
-} from "../components/home/Page06MaterialStory";
+import { HydrogelMaterialsPage } from "../components/home/HydrogelMaterialsPage";
+import { MaterialPipelineStory } from "../components/home/Page06MaterialStory";
+import { MaterialLimitations } from "../components/home/LimitationsCards";
 import { Footer } from "../components/Footer";
 import "../components/home/Layers.css";
 import "./home.css";
@@ -34,6 +32,7 @@ function Scene({
   name,
   index,
   active,
+  settled,
   birdProgress,
   birdStage,
   birdLandingProgress,
@@ -47,6 +46,7 @@ function Scene({
   name: string;
   index: number;
   active: boolean;
+  settled: boolean;
   birdProgress: number;
   birdStage: number;
   birdLandingProgress: number;
@@ -68,6 +68,7 @@ function Scene({
       <StoryContext.Provider
         value={{
           active,
+          settled,
           birdProgress,
           birdStage,
           birdLandingProgress,
@@ -85,6 +86,7 @@ export function Home() {
   const {
     stop,
     page,
+    settledPage,
     birdProgress,
     birdStage,
     birdLandingProgress,
@@ -100,7 +102,8 @@ export function Home() {
     openingTextExit,
     openingPersonExit,
     burdenStatReveal,
-    hydrogelInjection,
+    hydrogelExit,
+    limitationsEntry,
     cardTransition,
     nestTitle,
     pipelineProgress,
@@ -146,8 +149,13 @@ export function Home() {
       name: "Post-operative rehabilitation",
       content: <RehabilitationScene play={openingPerson[4] > 0.96} />,
     },
-    { name: "No single solution fits all", content: <HydrogelExplanation /> },
-    { name: "Material limitations", content: <MaterialLimitations /> },
+    { name: "Hydrogel materials", content: <HydrogelMaterialsPage /> },
+    {
+      name: "Material limitations",
+      content: (
+        <MaterialLimitations yellowRemoved={cardTransition.yellowExit > 0.98} />
+      ),
+    },
     { name: "Return to NEST", content: <Page05BirdReturnsToNest /> },
     {
       name: "NEST material pipeline",
@@ -223,26 +231,30 @@ export function Home() {
                     : {}),
                   ...(index === 5
                     ? {
-                        "--hydrogel-injection-offset": `${hydrogelInjection * 108}px`,
+                        "--hydrogel-background-image": `url("${import.meta.env.BASE_URL}images/home/hydrogel-materials-background.png")`,
+                        opacity: hydrogelExit,
                       }
                     : {}),
                   ...(index === 6
                     ? {
                         "--cards-yellow-y": `${cardTransition.yellowExit * -760}px`,
-                        "--cards-blue-y": `${cardTransition.yellowExit * -760}px`,
-                        "--limitations-opacity": 1 - cardTransition.yellowExit,
-                        "--limitations-title-y": `${cardTransition.yellowExit * -42}px`,
-                        "--results-text-opacity":
+                        "--limitations-cards-entry": limitationsEntry.cards,
+                        "--limitations-cards-y": `${(1 - limitationsEntry.cards) * 32}px`,
+                        "--limitations-title-entry": limitationsEntry.title,
+                        "--limitations-title-opacity":
+                          1 - cardTransition.yellowExit,
+                        "--limitations-title-y": `${(1 - limitationsEntry.title) * 18}px`,
+                        "--solution-title-opacity":
                           cardTransition.resultTextEntry,
-                        "--results-text-y": `${(1 - cardTransition.resultTextEntry) * 24}px`,
-                        "--results-entry-y": `${(1 - cardTransition.resultEntry) * 34}px`,
-                        "--results-opacity": cardTransition.resultEntry,
                       }
                     : {}),
                   ...(index === 7 ? { "--nest-title": nestTitle } : {}),
                 } as CSSProperties
               }
-              active={page === index}
+              active={page === index || crossfade?.incoming === index}
+              settled={
+                index === 5 ? scenePosition >= index : settledPage === index
+              }
               footer={scene.name === "NEST footer"}
               birdProgress={birdProgress}
               birdStage={birdStage}
