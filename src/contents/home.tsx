@@ -6,9 +6,12 @@ import {
   type CSSProperties,
 } from "react";
 import { HomeIntro } from "../components/home/HomeIntro";
-import GlobalBurden from "../components/home/GlobalBurden";
-import Page03SportsTrauma from "../components/home/Page03SportsTrauma";
-import Page04PostOpRehabilitation from "../components/home/Page04PostOpRehabilitation";
+import {
+  GlobalBurdenScene,
+  OpeningStatement,
+  RehabilitationScene,
+  SportsTraumaScene,
+} from "../components/home/OpeningStory";
 import Page05BirdReturnsToNest from "../components/home/Page05BirdReturnsToNest";
 import {
   HydrogelExplanation,
@@ -16,15 +19,15 @@ import {
   MaterialLimitations,
 } from "../components/home/Page06MaterialStory";
 import { Footer } from "../components/Footer";
-import "../components/home/layers.css";
+import "../components/home/Layers.css";
 import "./home.css";
 
 import { StoryContext } from "../components/home/StoryContext";
 import {
   STORY_STOPS,
   useStoryNavigation,
-} from "../components/home/useStoryNavigation";
-import "../components/home/material-story.css";
+} from "../components/home/UseStoryNavigation";
+import "../components/home/MaterialStory.css";
 
 function Scene({
   children,
@@ -82,9 +85,6 @@ export function Home() {
   const {
     stop,
     page,
-    burdenStage,
-    burdenProgress,
-    burdenPain,
     birdProgress,
     birdStage,
     birdLandingProgress,
@@ -92,12 +92,14 @@ export function Home() {
     nextScene,
     scenePosition,
     crossfade,
-    sportsText,
-    sportsArt,
-    sportsFrame,
-    rehabText,
-    rehabArt,
-    rehabFrame,
+    openingContent,
+    openingDecor,
+    openingText,
+    openingPerson,
+    openingDecorExit,
+    openingTextExit,
+    openingPersonExit,
+    burdenStatReveal,
     hydrogelInjection,
     cardTransition,
     nestTitle,
@@ -129,22 +131,20 @@ export function Home() {
       content: <HomeIntro onEnter={nextScene} />,
     },
     {
+      name: "Cartilage damage",
+      content: <OpeningStatement />,
+    },
+    {
       name: "Global burden",
-      content: (
-        <GlobalBurden
-          stage={burdenStage}
-          progress={burdenProgress}
-          painProgress={burdenPain}
-        />
-      ),
+      content: <GlobalBurdenScene play={openingPerson[2] > 0.96} />,
     },
     {
       name: "Sports trauma",
-      content: <Page03SportsTrauma frameProgress={sportsFrame} />,
+      content: <SportsTraumaScene play={openingPerson[3] > 0.96} />,
     },
     {
       name: "Post-operative rehabilitation",
-      content: <Page04PostOpRehabilitation frameProgress={rehabFrame} />,
+      content: <RehabilitationScene play={openingPerson[4] > 0.96} />,
     },
     { name: "No single solution fits all", content: <HydrogelExplanation /> },
     { name: "Material limitations", content: <MaterialLimitations /> },
@@ -195,18 +195,38 @@ export function Home() {
                         zIndex: 2,
                       }
                     : {}),
-                  ...(index === 2 || index === 3
+                  ...(index >= 1 && index <= 4
                     ? {
-                        "--intro-text": index === 2 ? sportsText : rehabText,
-                        "--intro-art": index === 2 ? sportsArt : rehabArt,
+                        "--opening-content": openingContent[index],
+                        "--opening-enter-left": `${(1 - openingText[index]) * -110}px`,
+                        "--opening-enter-right": `${(1 - openingText[index]) * 110}px`,
+                        "--opening-text-exit-left": `${openingTextExit[index] * -110}px`,
+                        "--opening-text-exit-right": `${openingTextExit[index] * 110}px`,
+                        "--opening-y": "0px",
+                        "--opening-decor":
+                          openingDecor[index] * (1 - openingDecorExit[index]),
+                        "--opening-text":
+                          openingText[index] * (1 - openingTextExit[index]),
+                        "--opening-person":
+                          openingPerson[index] * (1 - openingPersonExit[index]),
+                        ...(index === 2
+                          ? {
+                              "--burden-stat-reveal": burdenStatReveal,
+                              "--burden-map-opacity":
+                                1 - burdenStatReveal * 0.72,
+                              "--burden-legend-opacity":
+                                1 - burdenStatReveal * 0.66,
+                              "--burden-stat-y": `${(1 - burdenStatReveal) * 18}px`,
+                            }
+                          : {}),
                       }
                     : {}),
-                  ...(index === 4
+                  ...(index === 5
                     ? {
                         "--hydrogel-injection-offset": `${hydrogelInjection * 108}px`,
                       }
                     : {}),
-                  ...(index === 5
+                  ...(index === 6
                     ? {
                         "--cards-yellow-y": `${cardTransition.yellowExit * -760}px`,
                         "--cards-blue-y": `${cardTransition.yellowExit * -760}px`,
@@ -219,7 +239,7 @@ export function Home() {
                         "--results-opacity": cardTransition.resultEntry,
                       }
                     : {}),
-                  ...(index === 6 ? { "--nest-title": nestTitle } : {}),
+                  ...(index === 7 ? { "--nest-title": nestTitle } : {}),
                 } as CSSProperties
               }
               active={page === index}
@@ -228,7 +248,7 @@ export function Home() {
               birdStage={birdStage}
               birdLandingProgress={birdLandingProgress}
               next={next}
-              pipelineStep={index === 7 ? Math.round(pipelineProgress) : -1}
+              pipelineStep={index === 8 ? Math.round(pipelineProgress) : -1}
               pipelineProgress={pipelineProgress}
             >
               {scene.content}

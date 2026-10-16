@@ -1,7 +1,7 @@
 import { motion, useReducedMotion, type HTMLMotionProps } from "motion/react";
-import { homeMotion } from "./motion";
+import { homeMotion } from "./Motion";
 import { useStory } from "./StoryContext";
-import { pipelinePosition } from "./pipelinePath";
+import { pipelinePosition } from "./PipelinePath";
 
 export function AnimatedLayer({
   nodeId,
