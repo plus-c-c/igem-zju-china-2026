@@ -1,29 +1,30 @@
-import scaffoldPdf from "../assets/notebook/scaffold-ligation-system.pdf?url";
-import mitochondriaPdf from "../assets/notebook/mitochondrial-therapy.pdf?url";
-import gagPdf from "../assets/notebook/gag-retention.pdf?url";
-import magneticPdf from "../assets/notebook/tvn-magnetic-binding.pdf?url";
 import "./notebook.css";
 
 const notebooks = [
   {
-    id: "scaffold-ligation",
-    title: "SELP Hydrogels and Ligation System",
-    pdf: scaffoldPdf,
+    id: "overview",
+    title: "Overview",
+    pdf: "https://static.igem.wiki/teams/6102/wiki/notebook/zju-china-2026-notebook-overview-en.pdf",
   },
   {
-    id: "mitochondrial-therapy",
-    title: "Mitochondrial Therapy Module",
-    pdf: mitochondriaPdf,
+    id: "scaffold-ligation",
+    title: "SELP Hydrogels and Ligation System",
+    pdf: "https://static.igem.wiki/teams/6102/wiki/notebook/notebook-scaffold-ligation-system.pdf",
   },
   {
     id: "gag-retention",
     title: "GAG Retention Module",
-    pdf: gagPdf,
+    pdf: "https://static.igem.wiki/teams/6102/wiki/notebook/notebook-gag-retention-module.pdf",
   },
   {
     id: "tvn-magnetic-binding",
     title: "TVN Magnetic Binding Module",
-    pdf: magneticPdf,
+    pdf: "https://static.igem.wiki/teams/6102/wiki/notebook/notebook-tvn-magnetic-binding-module-english.pdf",
+  },
+  {
+    id: "mitochondrial-therapy",
+    title: "Mitochondrial Therapy Module",
+    pdf: "https://static.igem.wiki/teams/6102/wiki/notebook/notebook-mitochondrial-therapy-module.pdf",
   },
 ];
 
@@ -31,6 +32,36 @@ export function Notebook() {
   return (
     <div className="row mt-4 mb-5">
       <div className="col-lg-10 mx-auto notebook-page">
+        <p>
+          These are the <strong>Notebooks</strong> of our project which provides
+          a detailed record of all our activities throughout the season,
+          including wet-lab experiments, team meetings, and brainstorming
+          sessions.
+        </p>
+        <p>Each entry in this Notebook includes:</p>
+        <ul>
+          <li>
+            <strong>Date</strong> – Clearly marking when the activity took
+            place.
+          </li>
+          <li>
+            <strong>Purpose</strong> – The motivation or goal behind the
+            activity.
+          </li>
+          <li>
+            <strong>Procedures</strong> – Experimental steps, design strategies,
+            or protocols followed.
+          </li>
+          <li>
+            <strong>Notes</strong> – Data collected, outcomes of the activity,
+            or experimental findings.
+          </li>
+        </ul>
+        <p>
+          Where possible, we have also included{" "}
+          <strong>photos and diagrams</strong> to visually illustrate our
+          workflow and progress.
+        </p>
         {notebooks.map((notebook) => (
           <section
             key={notebook.id}
