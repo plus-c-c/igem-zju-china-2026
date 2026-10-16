@@ -1,41 +1,54 @@
-import { Inspirations, InspirationLink } from "../components/Inspirations";
+import scaffoldPdf from "../assets/notebook/scaffold-ligation-system.pdf?url";
+import mitochondriaPdf from "../assets/notebook/mitochondrial-therapy.pdf?url";
+import gagPdf from "../assets/notebook/gag-retention.pdf?url";
+import magneticPdf from "../assets/notebook/tvn-magnetic-binding.pdf?url";
+import "./notebook.css";
+
+const notebooks = [
+  {
+    id: "scaffold-ligation",
+    title: "SELP Hydrogels and Ligation System",
+    pdf: scaffoldPdf,
+  },
+  {
+    id: "mitochondrial-therapy",
+    title: "Mitochondrial Therapy Module",
+    pdf: mitochondriaPdf,
+  },
+  {
+    id: "gag-retention",
+    title: "GAG Retention Module",
+    pdf: gagPdf,
+  },
+  {
+    id: "tvn-magnetic-binding",
+    title: "TVN Magnetic Binding Module",
+    pdf: magneticPdf,
+  },
+];
 
 export function Notebook() {
-  const links: InspirationLink[] = [
-    { year: 2024, teamName: "EPFL", pageName: "notebook" },
-    { year: 2024, teamName: "JU-Krakow", pageName: "notebook" },
-  ];
-
   return (
-    <>
-      <div className="row mt-4">
-        <div className="col-lg-8">
-          <h2>What Should this Page Contain?</h2>
-          <hr />
-          <ul>
-            <li>
-              Record all activities in chronological order, with each entry
-              clearly dated.
-            </li>
-            <li>Provide sufficient detail for each activity, including:</li>
-            <ul>
-              <li>Purpose of the activity.</li>
-              <li>Methods and procedures used.</li>
-              <li>Results obtained.</li>
-              <li>Observations and notes.</li>
-            </ul>
-            <li>
-              Document all experiments, protocols, data analysis, meetings,
-              brainstorming sessions, and other project-related activities.
-            </li>
-            <li>
-              Include photos, videos, and diagrams to illustrate your progress.
-            </li>
-            <li>Indicate which team members participated in each activity.</li>
-          </ul>
-        </div>
-        <Inspirations inspirationLinkList={links} />
+    <div className="row mt-4 mb-5">
+      <div className="col-lg-10 mx-auto notebook-page">
+        {notebooks.map((notebook) => (
+          <section
+            key={notebook.id}
+            aria-labelledby={notebook.id}
+            className="mt-5"
+          >
+            <h2 id={notebook.id} className="mb-4">
+              {notebook.title}
+            </h2>
+            <iframe
+              className="notebook-pdf"
+              src={notebook.pdf}
+              title={`${notebook.title} — 2026 laboratory notebook`}
+              loading="lazy"
+            />
+          </section>
+        ))}
       </div>
-    </>
+    </div>
   );
 }
