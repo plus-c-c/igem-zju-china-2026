@@ -31,7 +31,7 @@ export function InteractiveWorldMap() {
   useEffect(() => {
     const controller = new AbortController();
     fetch(
-      "https://static.igem.wiki/teams/6102/wiki/images/home/world-map.svg",
+      "https://static.igem.wiki/teams/6102/wiki/images/home/world-map-new.svg",
       {
         signal: controller.signal,
       },
