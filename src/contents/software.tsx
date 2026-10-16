@@ -9,11 +9,13 @@
  *
  * The engineering (DBTL) record lives in the separate engineering document.
  */
+import "./software.css";
+
 export function Software() {
   return (
     <div className="row mt-4 mb-5">
       <div className="col-lg-10 mx-auto">
-        <article>
+        <article className="software-page">
           <h2 className="mt-5 mb-4">Introduction</h2>
           <p>
             This project focuses on an injectable SELP hydrogel delivery system.
